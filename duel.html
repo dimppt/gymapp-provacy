@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Duel — Alea</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0B0B0A; --cream: #F0ECE3; --orange: #FF5A2C;
+      --soft: rgba(240,236,227,0.6); --faint: rgba(240,236,227,0.38);
+      --line: rgba(240,236,227,0.12); --line2: rgba(240,236,227,0.22);
+    }
+    body {
+      font-family: 'Space Mono', monospace;
+      background: var(--bg); color: var(--cream);
+      min-height: 100vh; display: flex; justify-content: center;
+      padding: 32px 20px 60px;
+    }
+    .card { width: 100%; max-width: 420px; }
+    .eyebrow {
+      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--orange); margin-bottom: 12px;
+    }
+    h1 {
+      font-family: 'Anton', sans-serif; font-weight: 400;
+      font-size: clamp(36px, 10vw, 52px); line-height: 1.02;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .sub { font-size: 13px; color: var(--soft); margin-top: 12px; line-height: 1.6; }
+    .roll {
+      border: 1px solid var(--line2); border-radius: 16px;
+      padding: 16px 18px; margin-top: 28px;
+    }
+    .roll .label {
+      font-size: 10px; letter-spacing: 2.6px; text-transform: uppercase;
+      color: var(--faint); margin-bottom: 4px;
+    }
+    .row {
+      display: flex; justify-content: space-between; padding: 11px 0;
+      border-bottom: 1px solid var(--line); font-size: 14px;
+    }
+    .row:last-child { border-bottom: none; }
+    .row .v { color: var(--orange); }
+    .mark { display: flex; align-items: baseline; gap: 12px; margin-top: 24px; }
+    .mark .label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--faint); }
+    .mark .time { font-size: 26px; }
+    .mark .reps { font-size: 12px; color: var(--faint); }
+    .btn {
+      width: 100%; border: none; cursor: pointer;
+      border-radius: 14px; height: 58px; margin-top: 28px;
+      background: var(--orange); color: var(--bg);
+      font-family: 'Anton', sans-serif; font-size: 17px;
+      letter-spacing: 3px; text-transform: uppercase;
+      display: flex; align-items: center; justify-content: center;
+      text-decoration: none;
+    }
+    .store {
+      display: block; text-align: center; margin-top: 18px;
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--soft); text-decoration: none;
+    }
+    .store:hover { color: var(--cream); }
+    .countdown {
+      text-align: center; font-size: 11px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--faint); margin-top: 18px;
+    }
+    .tag {
+      text-align: center; font-size: 11px; letter-spacing: 1.5px;
+      color: var(--orange); margin-top: 34px;
+    }
+    .versus { display: flex; gap: 12px; margin-top: 28px; }
+    .tile {
+      flex: 1; border-radius: 16px; padding: 20px 12px; text-align: center;
+      background: rgba(240,236,227,0.06);
+    }
+    .tile.win { background: #131316; border: 2px solid var(--orange); }
+    .tile .who { font-size: 10px; letter-spacing: 2.4px; text-transform: uppercase; color: var(--faint); }
+    .tile.win .who { color: var(--orange); }
+    .tile .t { font-size: 28px; margin-top: 8px; }
+    .tile .r { font-size: 11px; color: var(--faint); margin-top: 6px; }
+    .wordmark {
+      font-family: 'Anton', sans-serif; font-size: 42px; letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div class="card">
+
+    <div id="challenge" class="hidden">
+      <div class="eyebrow">Incoming duel</div>
+      <h1 id="c-headline">Someone challenged you.</h1>
+      <p class="sub">Same roll. Same clock. No excuses.</p>
+      <div class="roll">
+        <div class="label">The roll</div>
+        <div id="c-rows"></div>
+      </div>
+      <div class="mark">
+        <span class="label">Their time</span>
+        <span class="time" id="c-time"></span>
+        <span class="reps" id="c-reps"></span>
+      </div>
+      <a class="btn" id="c-accept" href="#">Accept the roll</a>
+      <a class="store" id="c-store" href="#">Get Alea on Google Play</a>
+      <div class="countdown" id="c-countdown"></div>
+    </div>
+
+    <div id="settled" class="hidden">
+      <div class="eyebrow">Duel settled</div>
+      <h1 id="s-headline"></h1>
+      <div class="versus">
+        <div class="tile" id="s-tile-a">
+          <div class="who" id="s-who-a"></div>
+          <div class="t" id="s-time-a"></div>
+          <div class="r" id="s-reps-a"></div>
+        </div>
+        <div class="tile" id="s-tile-b">
+          <div class="who" id="s-who-b"></div>
+          <div class="t" id="s-time-b"></div>
+          <div class="r" id="s-reps-b"></div>
+        </div>
+      </div>
+      <p class="sub" id="s-verdict" style="text-align:center"></p>
+      <a class="btn" id="s-open" href="#">See it in the app</a>
+      <a class="store" id="s-store" href="#">Get Alea on Google Play</a>
+    </div>
+
+    <div id="expired" class="hidden">
+      <div class="eyebrow">Duel expired</div>
+      <h1>The dice expired.</h1>
+      <p class="sub">48 hours. No answer. Some people can't handle the roll.</p>
+      <a class="btn" id="e-store" href="#">Get Alea — roll your own</a>
+    </div>
+
+    <div id="broken" class="hidden">
+      <div class="eyebrow">Bad roll</div>
+      <h1>This link is broken.</h1>
+      <p class="sub">The duel data didn't survive the trip. Ask for the link again — or start your own.</p>
+      <a class="btn" id="b-store" href="#">Get Alea on Google Play</a>
+    </div>
+
+    <!-- Bare visit with no payload: act as a small landing page instead of an error -->
+    <div id="landing" class="hidden">
+      <div class="wordmark">Alea</div>
+      <div class="eyebrow" style="margin-top:10px">Calisthenics, drawn daily</div>
+      <h1 style="margin-top:26px">The dice decide.<br />You obey.</h1>
+      <p class="sub">
+        Two dice: one picks the exercise, one picks the reps. No planning, no
+        decision fatigue — roll and move. Challenge a friend to the exact same
+        roll and let the clock settle it.
+      </p>
+      <a class="btn" id="l-store" href="#">Get Alea on Google Play</a>
+    </div>
+
+    <div class="tag">#TheDiceDecided</div>
+  </div>
+
+  <script>
+    var PLAY_STORE = 'https://play.google.com/store/apps/details?id=com.alealabs.alea';
+    var PACKAGE = 'com.alealabs.alea';
+    var TTL = 48 * 3600;
+
+    // MUST stay in sync with EXERCISE_POOL order in src/data/exercises.ts.
+    // Links encode the index, so only ever APPEND here — never reorder/remove.
+    var NAMES = [
+      'Push-ups', 'Pull-ups', 'Squats', 'Burpees', 'Dips',
+      'Lunges', 'Mountain Climbers', 'Plank Hold', 'Jumping Jacks', 'Box Jumps',
+      'Pike Push-ups', 'Diamond Push-ups', 'Inverted Rows', 'Pistol Squats', 'Handstand Hold',
+      'L-Sit Hold', 'Muscle-ups', 'Bulgarian Split Squat', 'Tricep Dips', 'Archer Push-ups'
+    ];
+
+    function isTriple(s) {
+      return Array.isArray(s) && s.length === 3 &&
+        typeof s[0] === 'string' && typeof s[1] === 'number' && typeof s[2] === 'number';
+    }
+
+    // Compact positional format:
+    //   [v, id, [[exIdx, val], ...], [name, time, reps], created, [name, time, reps]?]
+    //   val: reps when positive, seconds when negative. Expiry = created + 48h.
+    function decodePayload(raw) {
+      try {
+        var b64 = raw.replace(/-/g, '+').replace(/_/g, '/');
+        while (b64.length % 4) b64 += '=';
+        var bin = atob(b64);
+        var bytes = new Uint8Array(bin.length);
+        for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+        var a = JSON.parse(new TextDecoder('utf-8').decode(bytes));
+        if (!Array.isArray(a) || a.length < 5) return null;
+
+        var v = a[0], id = a[1], ex = a[2], sa = a[3], c = a[4], sb = a[5];
+        if (v !== 1 || typeof id !== 'string' || typeof c !== 'number') return null;
+        if (!Array.isArray(ex) || !ex.length) return null;
+        for (var j = 0; j < ex.length; j++) {
+          if (!Array.isArray(ex[j]) || ex[j].length !== 2 ||
+              typeof ex[j][0] !== 'number' || typeof ex[j][1] !== 'number') return null;
+        }
+        if (!isTriple(sa)) return null;
+        if (sb !== undefined && !isTriple(sb)) return null;
+
+        return {
+          id: id,
+          ex: ex.map(function (e) {
+            var n = NAMES[e[0]] || ('Exercise ' + (e[0] + 1));
+            return e[1] < 0 ? { n: n, s: -e[1] } : { n: n, r: e[1] };
+          }),
+          a: { nm: sa[0], t: sa[1], rp: sa[2] },
+          b: sb ? { nm: sb[0], t: sb[1], rp: sb[2] } : undefined,
+          c: c, e: c + TTL
+        };
+      } catch (e) { return null; }
+    }
+
+    function fmtTime(sec) {
+      if (sec <= 0) return '—';
+      return Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0');
+    }
+    function fmtCountdown(sec) {
+      var h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s = sec % 60;
+      var pad = function (n) { return String(n).padStart(2, '0'); };
+      return pad(h) + ':' + pad(m) + ':' + pad(s);
+    }
+    function esc(s) {
+      var d = document.createElement('div'); d.textContent = s; return d.innerHTML;
+    }
+    function show(id) { document.getElementById(id).classList.remove('hidden'); }
+
+    // Android Chrome gets an intent:// URI with a Play Store fallback;
+    // everything else tries the custom scheme with a visible store link.
+    function appLink(raw) {
+      if (/android/i.test(navigator.userAgent)) {
+        return 'intent://duel?d=' + raw + '#Intent;scheme=alea;package=' + PACKAGE +
+          ';S.browser_fallback_url=' + encodeURIComponent(PLAY_STORE) + ';end';
+      }
+      return 'alea://duel?d=' + raw;
+    }
+
+    var raw = location.hash.slice(1);
+    var p = raw ? decodePayload(raw) : null;
+
+    document.querySelectorAll('#c-store, #s-store, #e-store, #b-store, #l-store').forEach(function (a) {
+      a.href = PLAY_STORE;
+    });
+
+    if (!raw) {
+      show('landing');
+    } else if (!p) {
+      show('broken');
+    } else if (p.e * 1000 < Date.now() && !p.b) {
+      show('expired');
+    } else if (p.b) {
+      var aWon = p.a.t < p.b.t, tie = p.a.t === p.b.t;
+      var winner = tie ? null : (aWon ? p.a : p.b);
+      var delta = Math.abs(p.a.t - p.b.t);
+      document.getElementById('s-headline').textContent =
+        tie ? 'Dead heat.' : winner.nm + ' took this one.';
+      document.getElementById('s-who-a').textContent = p.a.nm;
+      document.getElementById('s-time-a').textContent = fmtTime(p.a.t);
+      document.getElementById('s-reps-a').textContent = p.a.rp + ' REPS';
+      document.getElementById('s-who-b').textContent = p.b.nm;
+      document.getElementById('s-time-b').textContent = fmtTime(p.b.t);
+      document.getElementById('s-reps-b').textContent = p.b.rp + ' REPS';
+      if (!tie) document.getElementById(aWon ? 's-tile-a' : 's-tile-b').classList.add('win');
+      document.getElementById('s-verdict').textContent =
+        tie ? 'Same clock. A rematch settles it.' : 'Won by ' + delta + ' seconds. The other one knows.';
+      document.getElementById('s-open').href = appLink(raw);
+      show('settled');
+    } else {
+      document.getElementById('c-headline').innerHTML = esc(p.a.nm) + ' challenged you.';
+      var rows = document.getElementById('c-rows');
+      p.ex.forEach(function (e) {
+        var div = document.createElement('div');
+        div.className = 'row';
+        var v = e.s !== undefined ? e.s + 's' : '×' + e.r;
+        div.innerHTML = '<span class="n">' + esc(e.n) + '</span><span class="v">' + v + '</span>';
+        rows.appendChild(div);
+      });
+      document.getElementById('c-time').textContent = fmtTime(p.a.t);
+      document.getElementById('c-reps').textContent = p.a.rp + ' REPS';
+      document.getElementById('c-accept').href = appLink(raw);
+      var cd = document.getElementById('c-countdown');
+      var tick = function () {
+        var left = Math.max(0, Math.floor(p.e - Date.now() / 1000));
+        cd.textContent = left > 0 ? 'Expires in ' + fmtCountdown(left) : 'Expired';
+      };
+      tick();
+      setInterval(tick, 1000);
+      show('challenge');
+    }
+  </script>
+</body>
+</html>

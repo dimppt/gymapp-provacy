@@ -40,7 +40,7 @@
   </header>
 
   <h1>Privacy Policy</h1>
-  <div class="updated">Last updated: June 2, 2026</div>
+  <div class="updated">Last updated: July 13, 2026</div>
 
   <p>
     Alea ("the app") is developed and maintained by <strong>Alea Labs</strong>.
@@ -59,12 +59,24 @@
   <ul>
     <li>Your daily roll history (exercise name, rep count, timestamp)</li>
     <li>Your streak and lifetime statistics (roll count, total reps)</li>
-    <li>Your app preferences (theme, die configuration)</li>
+    <li>Your app preferences (theme, die configuration, reminder setting)</li>
+    <li>Your last completed session and any pending duel challenges</li>
+    <li>An optional display name you enter for duel mode (self-chosen, stored only on your device)</li>
   </ul>
   <p>
     This data is stored using your device's local storage (AsyncStorage) and
     never leaves your device. It is not synced to any cloud service, not shared
     with Alea Labs, and not accessible to any third party.
+  </p>
+
+  <h2>Duel Mode &amp; Share Links</h2>
+  <p>
+    Duel challenges and shared results travel <strong>inside the link itself</strong> —
+    the exercises, rep counts, times, and the display name you chose are encoded
+    directly in the URL you share. Nothing is uploaded to or stored on any server;
+    a duel exists only in the links exchanged between you and the person you
+    challenge. Only share a duel link with people you want to see its contents.
+    Result cards you share are images generated on your device.
   </p>
 
   <h2>Third-Party Services</h2>
@@ -75,8 +87,10 @@
 
   <h2>Permissions</h2>
   <p>
-    The app does not request any device permissions (camera, location,
-    microphone, contacts, etc.).
+    If you enable the optional daily reminder, the app asks for notification
+    permission and schedules reminders locally on your device — no push
+    servers are involved. The app requests no other device permissions
+    (camera, location, microphone, contacts, etc.).
   </p>
 
   <h2>Children's Privacy</h2>
