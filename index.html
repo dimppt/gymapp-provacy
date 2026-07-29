@@ -1,9 +1,1349 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="refresh" content="0; url=duel.html" />
-  <title>Alea</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Alea: Calisthenics Dice. Roll the dice, do the reps.</title>
+<meta name="description" content="Alea turns your workout into a roll. One die picks the exercise, one picks the reps. No plan, no equipment, no account. Build a streak and duel your friends. Free on Google Play." />
+<meta name="theme-color" content="#0B0B0A" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="assets/icon-512.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon-180.png" />
+<link rel="canonical" href="https://aleacalisthenics.com/" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Alea: Calisthenics Dice" />
+<meta property="og:description" content="The dice decide. You obey. Random bodyweight workouts, daily streaks, and duels with anyone. Free on Google Play." />
+<meta property="og:image" content="https://aleacalisthenics.com/assets/og.png" />
+<meta property="og:url" content="https://aleacalisthenics.com/" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Alea: Calisthenics Dice" />
+<meta name="twitter:description" content="The dice decide. You obey. Random bodyweight workouts, daily streaks, duels with anyone." />
+<meta name="twitter:image" content="https://aleacalisthenics.com/assets/og.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Alea – Calisthenics Dice",
+  "operatingSystem": "Android",
+  "applicationCategory": "HealthApplication",
+  "url": "https://aleacalisthenics.com/",
+  "installUrl": "https://play.google.com/store/apps/details?id=com.alealabs.alea",
+  "description": "Alea turns your workout into a roll. One die picks the exercise, one picks the reps. Random bodyweight calisthenics workouts, daily streaks and duels with friends. No account, no equipment.",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "author": { "@type": "Organization", "name": "Alea Labs" }
+}
+</script>
+
+<script>document.documentElement.classList.add('js');</script>
+
+<style>
+/* ---------------------------------------------------------------- tokens */
+:root{
+  --ink:#0B0B0A;
+  --panel:#131316;
+  --surface:#1C1C20;
+  --surface-2:#232327;
+  --cream:#F0ECE3;
+  --cream-2:#E5DFD2;
+  --cream-3:#F8F5EE;
+  --orange:#FF5A2C;
+
+  --on-dark:#F0ECE3;
+  --on-dark-soft:rgba(240,236,227,.62);
+  --on-dark-faint:rgba(240,236,227,.38);
+  --line-dark:rgba(240,236,227,.12);
+
+  --on-light:#131316;
+  --on-light-soft:rgba(19,19,22,.62);
+  --on-light-faint:rgba(19,19,22,.40);
+  --line-light:rgba(19,19,22,.14);
+
+  --display:'Anton',Impact,'Haettenschweiler','Arial Narrow Bold',sans-serif;
+  --mono:'Space Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --body:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+
+  --shell:1180px;
+  --pad:clamp(20px,5vw,40px);
+  --gutter:clamp(56px,9vw,132px);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+body{
+  background:var(--ink);
+  color:var(--on-dark);
+  font-family:var(--body);
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+
+/* ------------------------------------------------------------- primitives */
+.shell{width:100%;max-width:var(--shell);margin-inline:auto;padding-inline:var(--pad)}
+.band{padding-block:var(--gutter);position:relative}
+.band--dark{background:var(--ink);color:var(--on-dark)}
+.band--panel{background:var(--panel);color:var(--on-dark)}
+.band--light{background:var(--cream);color:var(--on-light)}
+
+.eyebrow{
+  font-family:var(--mono);font-size:11px;font-weight:700;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--orange);
+  display:flex;align-items:center;gap:12px;
+}
+.eyebrow::after{content:"";flex:0 0 34px;height:1px;background:currentColor;opacity:.5}
+.eyebrow--center{justify-content:center}
+.eyebrow--center::before{content:"";flex:0 0 34px;height:1px;background:currentColor;opacity:.5}
+
+h1,h2,h3{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.005em}
+h1{font-size:clamp(52px,9.6vw,112px);line-height:.86}
+h2{font-size:clamp(38px,6.6vw,76px);line-height:.9}
+h3{font-size:clamp(24px,3.4vw,34px);line-height:1}
+.accent{color:var(--orange)}
+
+.lede{font-size:clamp(17px,1.6vw,20px);line-height:1.6;max-width:56ch}
+.band--dark .lede,.band--panel .lede{color:var(--on-dark-soft)}
+.band--light .lede{color:var(--on-light-soft)}
+
+.label{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.26em;
+  text-transform:uppercase;
+}
+.band--dark .label,.band--panel .label{color:var(--on-dark-faint)}
+.band--light .label{color:var(--on-light-faint)}
+
+/* buttons */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  font-family:var(--display);font-size:16px;letter-spacing:.16em;text-transform:uppercase;
+  text-decoration:none;border:1px solid transparent;border-radius:14px;
+  padding:0 26px;height:56px;cursor:pointer;white-space:nowrap;
+  transition:transform .18s ease,background .18s ease,color .18s ease,border-color .18s ease;
+}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn--solid{background:var(--orange);color:#131316}
+.btn--solid:hover{background:#ff6f47}
+.btn--ghost{border-color:var(--line-dark);color:var(--on-dark)}
+.btn--ghost:hover{border-color:var(--on-dark);background:rgba(240,236,227,.05)}
+.band--light .btn--ghost{border-color:var(--line-light);color:var(--on-light)}
+.band--light .btn--ghost:hover{border-color:var(--on-light);background:rgba(19,19,22,.05)}
+.btn--sm{height:44px;font-size:13px;padding:0 18px;border-radius:11px}
+
+:where(a,button,summary):focus-visible{
+  outline:2px solid var(--orange);outline-offset:3px;border-radius:6px;
+}
+
+/* skip link: first thing a keyboard or screen reader hits */
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:99;
+  background:var(--orange);color:#131316;text-decoration:none;
+  font-family:var(--display);font-size:14px;letter-spacing:.14em;text-transform:uppercase;
+  padding:15px 22px;border-radius:0 0 12px 0;
+}
+.skip:focus{left:0}
+
+/* ------------------------------------------------------------------- nav */
+.nav{
+  position:sticky;top:0;z-index:60;
+  background:rgba(11,11,10,.72);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid transparent;transition:border-color .25s ease;
+}
+.nav.stuck{border-bottom-color:var(--line-dark)}
+.nav__in{display:flex;align-items:center;gap:20px;height:70px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;margin-right:auto}
+.brand__mark{
+  width:28px;height:28px;border-radius:9px;background:var(--orange);
+  display:grid;place-items:center;flex:none;
+}
+.brand__mark span{
+  width:11px;height:11px;border-radius:4px;border:2.5px solid #131316;display:block;
+}
+.brand__word{font-family:var(--display);font-size:22px;letter-spacing:.14em;text-transform:uppercase;line-height:1}
+.nav__links{display:flex;gap:28px}
+.nav__links a{
+  font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--on-dark-soft);text-decoration:none;transition:color .18s ease;
+}
+.nav__links a:hover{color:var(--orange)}
+@media (max-width:860px){.nav__links{display:none}}
+@media (max-width:420px){.nav .btn{font-size:11px;padding:0 14px}}
+
+/* ----------------------------------------------------------------- hero */
+.hero{padding-top:clamp(44px,7vw,86px);padding-bottom:0;overflow:hidden;position:relative}
+.hero::before{
+  content:"";position:absolute;inset:-30% -10% auto -10%;height:80%;
+  background:radial-gradient(60% 55% at 62% 40%,rgba(255,90,44,.20),transparent 70%);
+  pointer-events:none;
+}
+.hero__grid{
+  position:relative;display:grid;gap:clamp(40px,6vw,64px);
+  grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);align-items:center;
+}
+@media (max-width:940px){.hero__grid{grid-template-columns:1fr}}
+
+.hero h1{margin-top:22px}
+.hero h1 .l2{display:block;color:var(--orange)}
+.hero__lede{margin-top:26px}
+.hero__cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px;align-items:center}
+.hero__note{
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--on-dark-faint);margin-top:18px;
+}
+.hero__note b{color:var(--on-dark-soft);font-weight:400}
+
+.hero__art{position:relative;display:flex;justify-content:center;align-items:center;padding-bottom:var(--gutter)}
+
+/* phone frame */
+.phone{
+  position:relative;width:100%;max-width:296px;aspect-ratio:1080/1920;
+  border-radius:42px;padding:8px;flex:none;
+  background:linear-gradient(160deg,#34343a,#101012 55%);
+  box-shadow:0 46px 90px -30px rgba(0,0,0,.9),0 0 0 1px rgba(240,236,227,.07);
+}
+.phone::after{
+  content:"";position:absolute;top:20px;left:50%;transform:translateX(-50%);
+  width:74px;height:5px;border-radius:99px;background:rgba(240,236,227,.16);z-index:2;
+}
+.phone img{width:100%;height:100%;object-fit:cover;object-position:top;border-radius:35px}
+.phone--sm{max-width:250px}
+/* screenshots captured at 390×844 need their own frame ratio or they get cropped */
+.phone--tall{aspect-ratio:390/844}
+
+/* floating dice */
+.die{
+  position:absolute;border-radius:22%;display:grid;place-items:center;
+  box-shadow:0 24px 44px -14px rgba(0,0,0,.75);
+}
+.die i{background:currentColor;border-radius:50%;display:block}
+.die--a{
+  width:76px;height:76px;background:var(--orange);color:#131316;
+  top:4%;left:2%;transform:rotate(-14deg);
+}
+.die--a i{width:13px;height:13px}
+.die--b{
+  width:60px;height:60px;background:var(--cream);color:#131316;
+  bottom:16%;right:1%;transform:rotate(11deg);
+}
+.die--b i{width:11px;height:11px}
+/* below the two-column breakpoint the dice have nowhere to sit without
+   colliding with the phone, so they step out entirely */
+@media (max-width:940px){.die{display:none}}
+.js .die{animation:bob 6s ease-in-out infinite}
+.js .die--b{animation-delay:-3s}
+@keyframes bob{
+  0%,100%{translate:0 0}
+  50%{translate:0 -14px}
+}
+@media (prefers-reduced-motion:reduce){.js .die{animation:none}}
+
+/* ------------------------------------------------------------- the roller */
+.roller{
+  border:1px solid var(--line-dark);border-radius:24px;background:var(--panel);
+  padding:20px;margin-top:40px;max-width:520px;
+}
+.roller__head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px}
+.roller__head .t{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--orange)}
+.roller__dice{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:stretch}
+.rcard{
+  background:var(--surface);border:1px solid var(--line-dark);border-radius:18px;
+  padding:14px 12px;min-height:132px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;
+}
+.rcard__top{
+  position:absolute;top:12px;left:14px;right:14px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.rcard{position:relative}
+.rcard .dN{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;color:var(--on-dark-faint);
+  border:1px solid var(--line-dark);border-radius:99px;padding:2px 8px;
+}
+.rcard__val{
+  font-family:var(--display);font-size:clamp(26px,4.4vw,36px);line-height:1;
+  letter-spacing:.01em;word-break:break-word;text-transform:uppercase;
+}
+.rcard__val--num{color:var(--orange);font-size:clamp(38px,6vw,52px)}
+.rcard__sub{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--on-dark-faint)}
+.rcard.idle .rcard__val{color:var(--on-dark-faint)}
+.rcard.rolling{animation:shake .34s linear}
+@keyframes shake{
+  0%,100%{transform:translate(0,0)}
+  25%{transform:translate(-3px,2px) rotate(-.6deg)}
+  50%{transform:translate(3px,-2px) rotate(.6deg)}
+  75%{transform:translate(-2px,-1px)}
+}
+@media (prefers-reduced-motion:reduce){.rcard.rolling{animation:none}}
+.rtimes{align-self:center;color:var(--on-dark-faint);font-family:var(--mono);font-size:14px}
+.roller__btn{width:100%;margin-top:14px;height:58px}
+.roller__foot{
+  min-height:20px;margin-top:12px;text-align:center;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--on-dark-faint);
+}
+.roller__foot a{color:var(--orange)}
+
+/* --------------------------------------------------------------- marquee */
+.marquee{background:var(--orange);color:#131316;overflow:hidden;padding-block:15px;border-block:1px solid #131316}
+.marquee__track{display:flex;width:max-content;gap:0}
+.js .marquee__track{animation:slide 34s linear infinite}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.js .marquee__track{animation:none}}
+.marquee__group{display:flex;align-items:center;flex:none}
+.marquee__group span{
+  font-family:var(--display);font-size:15px;letter-spacing:.2em;text-transform:uppercase;
+  padding-inline:22px;white-space:nowrap;display:flex;align-items:center;gap:22px;
+}
+.marquee__group span::after{content:"";width:7px;height:7px;border-radius:2px;background:#131316;display:block}
+
+/* --------------------------------------------------------------- gallery */
+.gal{margin-top:clamp(36px,5vw,52px)}
+.gal__strip{
+  display:flex;gap:clamp(16px,2vw,26px);overflow-x:auto;overflow-y:hidden;
+  scroll-snap-type:x mandatory;scroll-behavior:smooth;
+  padding:4px 0 24px;scroll-padding-inline:2px;
+  scrollbar-width:thin;scrollbar-color:rgba(240,236,227,.22) transparent;
+}
+@media (prefers-reduced-motion:reduce){.gal__strip{scroll-behavior:auto}}
+.gal__strip::-webkit-scrollbar{height:6px}
+.gal__strip::-webkit-scrollbar-track{background:rgba(240,236,227,.06);border-radius:99px}
+.gal__strip::-webkit-scrollbar-thumb{background:rgba(240,236,227,.22);border-radius:99px}
+.gal__item{flex:0 0 auto;width:min(248px,64vw);scroll-snap-align:start}
+.gal__item .phone{max-width:none;width:100%;aspect-ratio:1080/1920}
+/* the 390x844 captures are a taller crop than the rest, so they sit inside the
+   shared frame on their own backdrop instead of being cut off */
+.gal__item.fit img{object-fit:contain;object-position:center}
+.gal__item.fit--dark img{background:#0B0B0A}
+.gal__item.fit--light img{background:#F0ECE3}
+.gal__cap{margin-top:16px}
+.gal__cap b{
+  font-family:var(--display);font-weight:400;font-size:17px;
+  text-transform:uppercase;letter-spacing:.03em;display:block;
+}
+.gal__cap span{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--on-dark-faint);
+}
+.gal__nav{display:flex;gap:10px;align-items:center;margin-top:8px}
+.gal__btn{
+  width:46px;height:46px;border-radius:50%;flex:none;cursor:pointer;
+  border:1px solid var(--line-dark);background:none;color:var(--on-dark);
+  display:grid;place-items:center;transition:border-color .18s ease,background .18s ease;
+}
+.gal__btn:hover{border-color:var(--on-dark);background:rgba(240,236,227,.05)}
+.gal__btn svg{width:16px;height:16px}
+.gal__hint{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--on-dark-faint);margin-left:8px;
+}
+@media (max-width:640px){.gal__nav{display:none}}
+
+/* ------------------------------------------------------------------ bill */
+.bill{
+  border:1px solid var(--line-dark);border-radius:22px;background:var(--panel);
+  padding:clamp(24px,3.2vw,38px);max-width:660px;margin-top:clamp(36px,5vw,52px);
+}
+.bill__head{
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  padding-bottom:18px;border-bottom:1px solid var(--line-dark);
+}
+.bill__row{
+  display:flex;justify-content:space-between;align-items:baseline;gap:18px;
+  padding:14px 0;border-bottom:1px dashed var(--line-dark);
+}
+.bill__row .k{font-size:16px}
+.bill__row .v{font-family:var(--mono);font-size:14px;color:var(--on-dark-soft);white-space:nowrap}
+.bill__total{
+  display:flex;justify-content:space-between;align-items:baseline;gap:18px;
+  padding-top:20px;margin-top:4px;
+}
+.bill__total .k{font-family:var(--display);font-size:clamp(22px,3vw,30px);text-transform:uppercase}
+.bill__total .v{font-family:var(--display);font-size:clamp(26px,3.6vw,38px);color:var(--orange)}
+.bill__foot{
+  margin-top:22px;font-family:var(--mono);font-size:11.5px;line-height:1.8;
+  letter-spacing:.02em;color:var(--on-dark-faint);
+}
+
+/* --------------------------------------------------------------- contact */
+.form{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:clamp(32px,4vw,44px);max-width:720px}
+@media (max-width:600px){.form{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:9px}
+.field--full{grid-column:1/-1}
+.field label{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--on-dark-faint);
+}
+.field input,.field select,.field textarea{
+  font-family:var(--body);font-size:16px;color:var(--on-dark);
+  background:var(--surface);border:1px solid var(--line-dark);border-radius:13px;
+  padding:14px 15px;width:100%;
+}
+.field textarea{resize:vertical;min-height:130px;line-height:1.6}
+.field select{
+  appearance:none;cursor:pointer;padding-right:44px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23FF5A2C' stroke-width='2.6' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 15px center;background-size:15px;
+}
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:none;border-color:var(--orange);
+}
+.form__actions{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.form__note{
+  font-family:var(--mono);font-size:11.5px;line-height:1.75;letter-spacing:.02em;
+  color:var(--on-dark-soft);max-width:42ch;
+}
+.form__note a{color:var(--orange)}
+
+/* ----------------------------------------------------------------- steps */
+.head{max-width:760px}
+.head .lede{margin-top:22px}
+.head h2{margin-top:20px}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:clamp(44px,6vw,68px);background:var(--line-light)}
+.band--light .steps{background:var(--line-light)}
+@media (max-width:800px){.steps{grid-template-columns:1fr}}
+.step{background:var(--cream);padding:clamp(26px,3.4vw,38px) clamp(22px,2.6vw,32px)}
+.step__n{font-family:var(--display);font-size:52px;line-height:1;color:var(--orange)}
+.step h3{margin-top:16px}
+.step p{margin-top:12px;color:var(--on-light-soft);font-size:16px}
+
+/* -------------------------------------------------------------- features */
+.feat{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:clamp(36px,6vw,80px);align-items:center;
+}
+.feat + .feat{margin-top:clamp(64px,9vw,124px)}
+.feat:nth-of-type(even) .feat__art{order:-1}
+@media (max-width:760px){
+  .feat{grid-template-columns:1fr;gap:36px}
+  .feat:nth-of-type(even) .feat__art{order:0}
+}
+.feat__art{display:flex;justify-content:center;position:relative}
+.feat__art::before{
+  content:"";position:absolute;inset:8% 6%;border-radius:50%;
+  background:radial-gradient(closest-side,rgba(255,90,44,.22),transparent);
+  filter:blur(28px);
+}
+.feat h3{margin-top:18px;font-size:clamp(30px,4.6vw,50px);line-height:.94}
+.feat p{margin-top:16px;color:var(--on-dark-soft);max-width:46ch}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;list-style:none}
+.chips li{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid var(--line-dark);border-radius:99px;padding:6px 13px;color:var(--on-dark-soft);
+}
+
+/* ----------------------------------------------------------------- duel */
+.duel{background:var(--orange);color:#131316}
+.duel__grid{
+  display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
+  gap:clamp(36px,6vw,72px);align-items:center;
+}
+@media (max-width:760px){.duel__grid{grid-template-columns:1fr}}
+.duel .eyebrow{color:#131316}
+.duel h2{max-width:12ch}
+.duel p{margin-top:20px;font-size:clamp(17px,1.6vw,19px);color:rgba(19,19,22,.78);max-width:46ch}
+.duel .btn--solid{background:#131316;color:var(--cream)}
+.duel .btn--solid:hover{background:#000}
+.duel__steps{list-style:none;margin-top:30px;display:grid;gap:2px}
+.duel__steps li{
+  display:flex;gap:14px;align-items:baseline;padding:13px 0;
+  border-bottom:1px solid rgba(19,19,22,.18);font-size:16px;
+}
+.duel__steps li:last-child{border-bottom:0}
+.duel__steps b{font-family:var(--mono);font-size:12px;letter-spacing:.1em;flex:none;opacity:.6}
+.duel .phone{box-shadow:0 46px 80px -32px rgba(19,19,22,.6),0 0 0 1px rgba(19,19,22,.1)}
+
+/* ----------------------------------------------------------------- solo */
+.ghosts{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.4vw,18px);
+  margin-top:clamp(38px,5vw,54px);list-style:none;
+}
+@media (max-width:900px){.ghosts{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.ghosts{grid-template-columns:1fr}}
+.ghost{
+  border:1px solid var(--line-dark);border-radius:18px;padding:22px 20px;
+  background:rgba(240,236,227,.03);display:flex;flex-direction:column;gap:10px;
+}
+.ghost h3{font-size:clamp(19px,2.1vw,23px)}
+.ghost .blurb{color:var(--on-dark-soft);font-size:15px;flex:1}
+.ghost .mark{
+  display:flex;align-items:baseline;gap:10px;
+  border-top:1px solid var(--line-dark);padding-top:12px;margin-top:4px;
+}
+.ghost .mark .t{font-family:var(--display);font-size:24px;color:var(--orange);line-height:1}
+.ghost .mark .r{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--on-dark-faint)}
+.honest{
+  margin-top:30px;font-family:var(--mono);font-size:12.5px;line-height:1.75;
+  letter-spacing:.02em;color:var(--on-dark-soft);max-width:62ch;
+  border-left:2px solid var(--orange);padding-left:18px;
+}
+
+/* ---------------------------------------------------------------- extras */
+.grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  margin-top:clamp(44px,6vw,64px);background:var(--line-dark);
+  border-block:1px solid var(--line-dark);
+}
+@media (max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:600px){.grid{grid-template-columns:1fr}}
+.cell{background:var(--ink);padding:clamp(26px,3vw,34px) clamp(22px,2.4vw,30px);display:flex;flex-direction:column;gap:12px}
+.cell__top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.cell h3{font-size:clamp(19px,2.1vw,24px)}
+.cell p{color:var(--on-dark-soft);font-size:15.5px}
+.cell dl{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:auto;padding-top:6px}
+.cell dt{
+  font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--on-dark-faint);width:100%;
+}
+.cell dd{font-family:var(--mono);font-size:12.5px;color:var(--on-dark-soft)}
+.cell dd + dd::before{content:"·";margin-right:18px;color:var(--on-dark-faint)}
+.new{
+  font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--orange);border:1px solid var(--orange);
+  border-radius:99px;padding:3px 9px;line-height:1;
+}
+
+/* ---------------------------------------------------------------- pillars */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,40px);margin-top:clamp(44px,6vw,64px)}
+@media (max-width:800px){.pillars{grid-template-columns:1fr}}
+.pillar{border-top:1px solid var(--line-dark);padding-top:22px}
+.pillar h3{font-size:clamp(20px,2.4vw,26px)}
+.pillar p{margin-top:12px;color:var(--on-dark-soft);font-size:16px}
+
+/* ------------------------------------------------------------------ quote */
+.quote{text-align:center}
+.quote blockquote{
+  font-family:var(--display);font-size:clamp(32px,5.6vw,70px);line-height:.96;
+  text-transform:uppercase;margin-top:26px;text-wrap:balance;
+}
+.quote blockquote em{font-style:normal;color:var(--orange)}
+.quote figcaption{
+  margin-top:28px;font-family:var(--mono);font-size:11px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--on-light-faint);
+}
+
+/* -------------------------------------------------------------------- faq */
+.faq{max-width:820px;margin-top:clamp(38px,5vw,56px)}
+.faq details{border-top:1px solid var(--line-light);padding:4px 0}
+.faq details:last-of-type{border-bottom:1px solid var(--line-light)}
+.faq summary{
+  list-style:none;cursor:pointer;padding:22px 44px 22px 0;position:relative;
+  font-family:var(--display);font-size:clamp(18px,2.3vw,24px);line-height:1.15;
+  text-transform:uppercase;letter-spacing:.01em;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"";position:absolute;right:4px;top:50%;width:13px;height:13px;
+  border-right:2px solid var(--orange);border-bottom:2px solid var(--orange);
+  transform:translateY(-70%) rotate(45deg);transition:transform .25s ease;
+}
+.faq details[open] summary::after{transform:translateY(-20%) rotate(-135deg)}
+.faq p{padding:0 44px 24px 0;color:var(--on-light-soft);max-width:64ch}
+.faq a{color:var(--on-light);text-underline-offset:3px}
+
+/* ------------------------------------------------------------------- cta */
+.cta{text-align:center;position:relative;overflow:hidden}
+.cta::before{
+  content:"";position:absolute;inset:auto -10% -60% -10%;height:100%;
+  background:radial-gradient(50% 60% at 50% 100%,rgba(255,90,44,.22),transparent 70%);
+}
+.cta__in{position:relative}
+.cta h2{margin-top:24px;max-width:14ch;margin-inline:auto}
+.cta .lede{margin:24px auto 0}
+.cta__row{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-top:36px}
+.cta__note{
+  margin-top:22px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--on-dark-faint);
+}
+
+/* ---------------------------------------------------------------- footer */
+.footer{border-top:1px solid var(--line-dark);padding-block:40px 48px;background:var(--ink)}
+.footer__in{display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between}
+.footer__links{display:flex;flex-wrap:wrap;gap:22px}
+.footer__links a{
+  font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--on-dark-soft);text-decoration:none;
+}
+.footer__links a:hover{color:var(--orange)}
+.footer__legal{
+  width:100%;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
+  color:var(--on-dark-faint);border-top:1px solid var(--line-dark);padding-top:22px;
+  display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:space-between;
+}
+.tag{color:var(--orange)}
+
+/* -------------------------------------------------------------- reveals */
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.22,1,.36,1)}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .js .rv{opacity:1;transform:none;transition:none}
+}
+</style>
 </head>
-<body><a href="duel.html">Alea</a></body>
+<body>
+
+<a class="skip" href="#top">Skip to content</a>
+
+<!-- ================================================================= nav -->
+<header class="nav" id="nav">
+  <div class="shell nav__in">
+    <a class="brand" href="#top" aria-label="Alea, home">
+      <span class="brand__mark" aria-hidden="true"><span></span></span>
+      <span class="brand__word">Alea</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#screenshots">Screenshots</a>
+      <a href="#features">Features</a>
+      <a href="#duel">Duels</a>
+      <a href="#more">More</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn--solid btn--sm play" data-utm="nav" href="https://play.google.com/store/apps/details?id=com.alealabs.alea">Get Alea</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ================================================================ hero -->
+<section class="band band--dark hero">
+  <div class="shell hero__grid">
+    <div>
+      <p class="eyebrow">Calisthenics, drawn daily</p>
+      <h1>The dice decide.<span class="l2">You obey.</span></h1>
+      <p class="lede hero__lede">
+        Two dice. One picks the exercise, one picks the reps. No plan to follow,
+        no decision to make, nothing to buy. Just roll and move.
+      </p>
+      <div class="hero__cta">
+        <a class="btn btn--solid play" data-utm="hero" href="https://play.google.com/store/apps/details?id=com.alealabs.alea">Get it on Google Play</a>
+        <a class="btn btn--ghost" href="#how">See how it works</a>
+      </div>
+      <p class="hero__note"><b>Free</b> &nbsp;·&nbsp; <b>No account</b> &nbsp;·&nbsp; <b>No equipment</b> &nbsp;·&nbsp; <b>Works offline</b></p>
+
+      <!-- live roller -->
+      <div class="roller rv" id="roller">
+        <div class="roller__head">
+          <span class="t">Try a roll</span>
+          <span class="label" id="rollCount">Right here</span>
+        </div>
+        <div class="roller__dice">
+          <div class="rcard idle" id="cardEx">
+            <div class="rcard__top"><span class="label">Exercise</span><span class="dN">D8</span></div>
+            <span class="rcard__val" id="valEx">Ready</span>
+            <span class="rcard__sub" id="subEx">Tap roll</span>
+          </div>
+          <span class="rtimes" aria-hidden="true">×</span>
+          <div class="rcard idle" id="cardRp">
+            <div class="rcard__top"><span class="label">Reps</span><span class="dN">D6</span></div>
+            <span class="rcard__val rcard__val--num" id="valRp">0</span>
+            <span class="rcard__sub" id="subRp">Reps</span>
+          </div>
+        </div>
+        <button class="btn btn--solid roller__btn" id="rollBtn" type="button">Roll</button>
+        <p class="roller__foot" id="rollFoot" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <div class="hero__art">
+      <span class="die die--a" aria-hidden="true"><i></i></span>
+      <span class="die die--b" aria-hidden="true"><i></i></span>
+      <div class="phone">
+        <img src="assets/shot-roll.png" width="1080" height="1920" alt="The Alea home screen showing a roll result: Dips ×10, with a big orange Roll button and a 1-day streak." />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= marquee -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <div class="marquee__group">
+      <span>Push-ups</span><span>Squats</span><span>Burpees</span><span>Pull-ups</span><span>Plank hold</span>
+      <span>Lunges</span><span>Dips</span><span>Mountain climbers</span><span>Pistol squats</span><span>Muscle-ups</span>
+    </div>
+    <div class="marquee__group">
+      <span>Push-ups</span><span>Squats</span><span>Burpees</span><span>Pull-ups</span><span>Plank hold</span>
+      <span>Lunges</span><span>Dips</span><span>Mountain climbers</span><span>Pistol squats</span><span>Muscle-ups</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========================================================= screenshots -->
+<section class="band band--panel" id="screenshots">
+  <div class="shell">
+    <div class="head rv">
+      <p class="eyebrow">Screenshots</p>
+      <h2>Six screens.<br /><span class="accent">That's the whole app.</span></h2>
+    </div>
+    <div class="gal rv">
+      <div class="gal__strip" id="galStrip" tabindex="0" role="region" aria-label="App screenshots, scrollable">
+        <figure class="gal__item">
+          <div class="phone"><img src="assets/shot-ready.png" width="1080" height="1920" loading="lazy" alt="Alea's home screen before rolling, with the exercise and reps dice cards and a large Roll button." /></div>
+          <figcaption class="gal__cap"><b>The roll</b><span>Two dice, one tap</span></figcaption>
+        </figure>
+        <figure class="gal__item">
+          <div class="phone"><img src="assets/shot-roll.png" width="1080" height="1920" loading="lazy" alt="A drawn roll in Alea: Dips times 10, logged under today with a 1-day streak." /></div>
+          <figcaption class="gal__cap"><b>Your draw</b><span>Exercise by reps</span></figcaption>
+        </figure>
+        <figure class="gal__item">
+          <div class="phone"><img src="assets/shot-stats.png" width="1080" height="1920" loading="lazy" alt="Alea's stats screen showing current streak, rolls, reps, the week strip and top exercises." /></div>
+          <figcaption class="gal__cap"><b>The streak</b><span>Lifetime numbers</span></figcaption>
+        </figure>
+        <figure class="gal__item fit fit--dark">
+          <div class="phone"><img src="assets/shot-tailored.png" width="390" height="844" loading="lazy" alt="Alea's tailored workout builder with difficulty, length and body-area controls." /></div>
+          <figcaption class="gal__cap"><b>Full sessions</b><span>Tuned to your time</span></figcaption>
+        </figure>
+        <figure class="gal__item fit fit--light">
+          <div class="phone"><img src="assets/shot-duel.png" width="390" height="844" loading="lazy" alt="A settled Alea duel showing 11:58 against 12:40 over 135 reps, with Rematch and Share It." /></div>
+          <figcaption class="gal__cap"><b>Duel settled</b><span>Faster time wins</span></figcaption>
+        </figure>
+        <figure class="gal__item fit fit--dark">
+          <div class="phone"><img src="assets/shot-share.png" width="390" height="844" loading="lazy" alt="An Alea share card reading “The dice decided. I obeyed.” with reps, time and difficulty." /></div>
+          <figcaption class="gal__cap"><b>Share card</b><span>Built for stories</span></figcaption>
+        </figure>
+      </div>
+      <div class="gal__nav">
+        <button class="gal__btn" type="button" id="galPrev" aria-label="Previous screenshot" aria-controls="galStrip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+        </button>
+        <button class="gal__btn" type="button" id="galNext" aria-label="Next screenshot" aria-controls="galStrip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+        <span class="gal__hint">Swipe or scroll to browse</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================= how -->
+<section class="band band--light" id="how">
+  <div class="shell">
+    <div class="head rv">
+      <p class="eyebrow">How it works</p>
+      <h2>Three seconds from<br /><span class="accent">&ldquo;meh&rdquo;</span> to moving.</h2>
+      <p class="lede">
+        Most workout apps hand you a plan and a decision. Alea hands you a number.
+        The whole app is one button. The rest is just doing what it says.
+      </p>
+    </div>
+    <div class="steps rv">
+      <article class="step">
+        <div class="step__n">01</div>
+        <h3>Roll</h3>
+        <p>One tap. The exercise die draws your movement, the rep die draws your number. That's the plan.</p>
+      </article>
+      <article class="step">
+        <div class="step__n">02</div>
+        <h3>Move</h3>
+        <p>Twenty bodyweight exercises: push, pull, legs, core, cardio, holds. Do the reps wherever you're standing.</p>
+      </article>
+      <article class="step">
+        <div class="step__n">03</div>
+        <h3>Repeat</h3>
+        <p>Roll again, or bank it. Come back tomorrow and the streak grows. Don't break the chain.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ features -->
+<section class="band band--dark" id="features">
+  <div class="shell">
+    <div class="head rv" style="margin-bottom:clamp(52px,7vw,86px)">
+      <p class="eyebrow">What's inside</p>
+      <h2>Small app.<br />Loud results.</h2>
+    </div>
+
+    <article class="feat rv">
+      <div>
+        <p class="eyebrow">The roll</p>
+        <h3>Decision fatigue,<br /><span class="accent">deleted.</span></h3>
+        <p>
+          Configure your dice (a D4 for an easy day, a D20 when you mean it), then
+          stop thinking. Every roll is a fresh draw from your own pool, so you never
+          plan a workout again.
+        </p>
+        <ul class="chips">
+          <li>D4 – D20 exercises</li><li>D4 – D12 reps</li><li>Timed holds</li><li>One-tap</li>
+        </ul>
+      </div>
+      <div class="feat__art">
+        <div class="phone phone--sm">
+          <img src="assets/shot-ready.png" width="1080" height="1920" loading="lazy" alt="Alea's home screen before rolling: two dice cards labelled Exercise and Reps, and a large Roll button." />
+        </div>
+      </div>
+    </article>
+
+    <article class="feat rv">
+      <div>
+        <p class="eyebrow">The streak</p>
+        <h3>Don't break<br /><span class="accent">the chain.</span></h3>
+        <p>
+          Roll on consecutive days and the number climbs. Alea keeps your lifetime
+          reps, your best streak, your top exercises and your week at a glance.
+          The only scoreboard that matters is yesterday's you, and if you miss a
+          day your monthly freeze covers it.
+        </p>
+        <ul class="chips">
+          <li>Daily streak</li><li>Streak insurance</li><li>Lifetime reps</li><li>Week view</li><li>Top exercises</li>
+        </ul>
+      </div>
+      <div class="feat__art">
+        <div class="phone phone--sm">
+          <img src="assets/shot-stats.png" width="1080" height="1920" loading="lazy" alt="Alea's stats screen: current streak, total rolls, total reps, a week strip and a top-exercises list." />
+        </div>
+      </div>
+    </article>
+
+    <article class="feat rv">
+      <div>
+        <p class="eyebrow">Full sessions</p>
+        <h3>Want more<br /><span class="accent">than one move?</span></h3>
+        <p>
+          Draw a 100-rep session at random, or generate a tailored workout by time,
+          focus area and difficulty. Same dice energy, real training volume.
+        </p>
+        <ul class="chips">
+          <li>100-rep session</li><li>By time</li><li>By focus</li><li>By difficulty</li>
+        </ul>
+      </div>
+      <div class="feat__art">
+        <div class="phone phone--sm phone--tall">
+          <img src="assets/shot-tailored.png" width="390" height="844" loading="lazy" alt="Alea's tailored workout builder, with controls for duration, focus area and difficulty." />
+        </div>
+      </div>
+    </article>
+
+    <article class="feat rv">
+      <div>
+        <p class="eyebrow">The share card</p>
+        <h3>Flex<br /><span class="accent">the grind.</span></h3>
+        <p>
+          Every roll and every session becomes a clean card built for your story.
+          Post the draw, tag <span class="tag">#TheDiceDecided</span>, and let the
+          dice do the talking. Challenge cards travel with a tappable link, so
+          they work in a DM as well as on a story.
+        </p>
+        <ul class="chips">
+          <li>Story-ready</li><li>Roll cards</li><li>Session cards</li><li>Image + link</li>
+        </ul>
+      </div>
+      <div class="feat__art">
+        <div class="phone phone--sm phone--tall">
+          <img src="assets/shot-share.png" width="390" height="844" loading="lazy" alt="An Alea share card reading “The dice decided. I obeyed.” with the exercise, reps and difficulty." />
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================================================================ duel -->
+<section class="band duel" id="duel">
+  <div class="shell duel__grid">
+    <div class="rv">
+      <p class="eyebrow">Duel mode</p>
+      <h2>Challenge anyone.</h2>
+      <p>
+        Send a challenge card to anyone with a phone. They get your exact roll,
+        race the same clock, and the faster time wins. No account, no friend
+        request, no lobby. Just a link and bragging rights.
+      </p>
+      <ol class="duel__steps">
+        <li><b>01</b><span>Do the workout against the clock.</span></li>
+        <li><b>02</b><span>Share the card: WhatsApp, Messenger, SMS, anywhere.</span></li>
+        <li><b>03</b><span>They open it and race your exact roll.</span></li>
+        <li><b>04</b><span>Fastest time takes it. The other one knows.</span></li>
+      </ol>
+      <p>Nobody to send it to yet? <a href="#solo" style="color:#131316">Race yourself instead</a>. Same duel, no one else required.</p>
+      <div class="hero__cta">
+        <a class="btn btn--solid play" data-utm="duel" href="https://play.google.com/store/apps/details?id=com.alealabs.alea">Start a duel</a>
+      </div>
+    </div>
+    <div class="feat__art rv">
+      <div class="phone phone--sm phone--tall">
+        <img src="assets/shot-duel.png" width="390" height="844" loading="lazy" alt="A settled Alea duel: “You took this one.” 11:58 against 12:40 over 135 reps, with Rematch and Share It buttons." />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ solo -->
+<section class="band band--panel" id="solo">
+  <div class="shell">
+    <div class="head rv">
+      <p class="eyebrow">Solo duels &nbsp;·&nbsp; New in 1.3</p>
+      <h2>Nobody to race?<br /><span class="accent">Race yourself.</span></h2>
+      <p class="lede">
+        Every timed session gets banked, so your last twelve workouts become
+        opponents. Beat your own clock, or pick a pace-setter and find out where
+        you actually stand. Same duel, same settle screen, no one else required.
+      </p>
+    </div>
+    <ul class="ghosts rv">
+      <li class="ghost">
+        <h3>The Warm-Up</h3>
+        <p class="blurb">A gentle opener. No excuses.</p>
+        <div class="mark"><span class="t">2:30</span><span class="r">46 reps</span></div>
+      </li>
+      <li class="ghost">
+        <h3>The Regular</h3>
+        <p class="blurb">Trains most days. Nothing flashy.</p>
+        <div class="mark"><span class="t">4:20</span><span class="r">66 reps</span></div>
+      </li>
+      <li class="ghost">
+        <h3>The Grinder</h3>
+        <p class="blurb">Turns up when it is raining.</p>
+        <div class="mark"><span class="t">7:00</span><span class="r">86 reps</span></div>
+      </li>
+      <li class="ghost">
+        <h3>The Machine</h3>
+        <p class="blurb">You will not beat this today.</p>
+        <div class="mark"><span class="t">10:00</span><span class="r">93 reps</span></div>
+      </li>
+    </ul>
+    <p class="honest rv">
+      Straight up: the pace-setters are designed benchmarks, not other people's
+      data. Nothing here is collected from anyone. Your solo duels never leave
+      your phone.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================== extras -->
+<section class="band band--dark" id="more">
+  <div class="shell">
+    <div class="head rv">
+      <p class="eyebrow">Everything else</p>
+      <h2>The details<br /><span class="accent">that keep you going.</span></h2>
+    </div>
+    <div class="grid rv">
+      <article class="cell">
+        <div class="cell__top"><h3>Streak insurance</h3><span class="new">New</span></div>
+        <p>Life happens. One freeze per calendar month absorbs a single missed day and your chain survives. It doesn't stack: insurance against a slip, not a bank of skip days.</p>
+        <dl><dt>The rule</dt><dd>1 freeze / month</dd><dd>Covers 1 missed day</dd></dl>
+      </article>
+
+      <article class="cell">
+        <div class="cell__top"><h3>Reminders that learn</h3><span class="new">New</span></div>
+        <p>Alea notices when you actually train and nudges you about an hour before your usual time. Until it has enough to go on, it just asks at 6pm. One notification a day, and you can switch it off.</p>
+        <dl><dt>Timing</dt><dd>~1h before your median hour</dd><dd>6pm default</dd></dl>
+      </article>
+
+      <article class="cell">
+        <div class="cell__top"><h3>Make it yours</h3></div>
+        <p>Dark, light, or follow the system. Four accent colours. Soft or sharp corners. Set it once and the whole app follows.</p>
+        <dl><dt>Options</dt><dd>3 themes</dd><dd>4 accents</dd><dd>2 corner styles</dd></dl>
+      </article>
+
+      <article class="cell">
+        <div class="cell__top"><h3>Your dice, your rules</h3></div>
+        <p>The exercise die runs D4 to D20 and the rep die D4 to D12. Small dice keep you on the fundamentals with gentle numbers; big dice open the pool to pistol squats, muscle-ups and reps up to 75.</p>
+        <dl><dt>Range</dt><dd>D4 – D20 exercises</dd><dd>D4 – D12 reps</dd></dl>
+      </article>
+
+      <article class="cell">
+        <div class="cell__top"><h3>Holds, not just reps</h3></div>
+        <p>Planks, L-sits and handstands get drawn in seconds instead of reps. Twenty seconds on an easy roll, three minutes when the dice are cruel.</p>
+        <dl><dt>Range</dt><dd>20s – 180s</dd></dl>
+      </article>
+
+      <article class="cell">
+        <div class="cell__top"><h3>Every roll counted</h3></div>
+        <p>Today's log, the week strip, lifetime rolls and reps, your best streak and your most-drawn exercises. Enough to see the habit forming, not so much that it becomes homework.</p>
+        <dl><dt>Tracked</dt><dd>Streak &amp; best</dd><dd>Rolls &amp; reps</dd><dd>Top exercises</dd></dl>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================== pillars -->
+<section class="band band--panel">
+  <div class="shell">
+    <div class="head rv">
+      <p class="eyebrow">No catch</p>
+      <h2>Nothing to<br />sign up for.<br /><span class="accent">Nothing to sync.</span></h2>
+      <p class="lede">
+        Alea has no login screen, no backend and no analytics profile of you.
+        Your rolls, your streak and your history live on your phone. That's it.
+      </p>
+    </div>
+    <div class="pillars rv">
+      <div class="pillar">
+        <h3>No account</h3>
+        <p>Open the app and you're training in seconds. There is no sign-up, because there's nothing to sign up to.</p>
+      </div>
+      <div class="pillar">
+        <h3>Stays on device</h3>
+        <p>Your history is stored locally. Duel links carry the roll inside the link itself, so no server holds your workouts.</p>
+      </div>
+      <div class="pillar">
+        <h3>Works anywhere</h3>
+        <p>Hotel room, park, kitchen floor, no signal. Bodyweight only, offline by default.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ bill -->
+<section class="band band--dark" id="cost">
+  <div class="shell">
+    <div class="head rv">
+      <p class="eyebrow">What it costs</p>
+      <h2>The whole bill.</h2>
+      <p class="lede">Every part of the app, itemised. No trial clock, no locked tier, no ads between rolls.</p>
+    </div>
+    <div class="bill rv">
+      <div class="bill__head">
+        <span class="label">Alea &nbsp;·&nbsp; Calisthenics dice</span>
+        <span class="label">Itemised</span>
+      </div>
+      <div class="bill__row"><span class="k">Download</span><span class="v">$0.00</span></div>
+      <div class="bill__row"><span class="k">The daily roll</span><span class="v">$0.00</span></div>
+      <div class="bill__row"><span class="k">All twenty exercises</span><span class="v">$0.00</span></div>
+      <div class="bill__row"><span class="k">Full sessions and tailored workouts</span><span class="v">$0.00</span></div>
+      <div class="bill__row"><span class="k">Duels, solo duels and share cards</span><span class="v">$0.00</span></div>
+      <div class="bill__row"><span class="k">Streak insurance</span><span class="v">$0.00</span></div>
+      <div class="bill__row"><span class="k">Ads shown</span><span class="v">None</span></div>
+      <div class="bill__row"><span class="k">Accounts required</span><span class="v">None</span></div>
+      <div class="bill__row"><span class="k">Your data, sold</span><span class="v">None</span></div>
+      <div class="bill__total"><span class="k">Total</span><span class="v">$0.00</span></div>
+      <p class="bill__foot">
+        There are no in-app purchases and no advertising SDKs in the app today.
+        If that ever changes, the roll and the duel loop stay free.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================================== quote -->
+<section class="band band--light">
+  <div class="shell quote rv">
+    <figure>
+      <p class="eyebrow eyebrow--center">The idea</p>
+      <blockquote>Built for consistency,<br /><em>not perfection.</em></blockquote>
+      <figcaption>Small daily rolls beat big rare plans</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ================================================================= faq -->
+<section class="band band--light" id="faq" style="padding-top:0">
+  <div class="shell">
+    <div class="head rv">
+      <p class="eyebrow">Questions</p>
+      <h2>The short answers.</h2>
+    </div>
+    <div class="faq rv">
+      <details>
+        <summary>Is Alea free?</summary>
+        <p>Yes. Alea is free to download, and the whole core loop (rolling the dice) is free to use. No ads, no in-app purchases, no trial that expires.</p>
+      </details>
+      <details>
+        <summary>Do I need any equipment?</summary>
+        <p>Almost none. Everything is bodyweight: the floor, a wall and you. A few pull movements (pull-ups, inverted rows, muscle-ups) want a bar or a sturdy edge. Everything else needs nothing at all.</p>
+      </details>
+      <details>
+        <summary>Do I need an account?</summary>
+        <p>No. There's no sign-up, no email, no password. Open the app and roll. Even duels work without accounts, because the challenge travels inside the link.</p>
+      </details>
+      <details>
+        <summary>Does it work offline?</summary>
+        <p>Yes. Alea runs entirely on your phone and keeps your history in local storage, so it works with no signal at all.</p>
+      </details>
+      <details>
+        <summary>What exercises are in it?</summary>
+        <p>Twenty bodyweight movements across push, pull, legs, core, cardio, plyometrics and balance, from push-ups, squats and burpees to pistol squats, L-sit holds and muscle-ups. Your dice size decides how many of them are in play.</p>
+      </details>
+      <details>
+        <summary>Is it for beginners or advanced?</summary>
+        <p>Both, and you set which. A small exercise die keeps you on the fundamentals with gentle rep counts; scale it up and the pool grows into the hard stuff with rep values up to 75.</p>
+      </details>
+      <details>
+        <summary>How do duels work?</summary>
+        <p>Finish a workout against the clock and share the challenge card. Whoever opens it gets your exact roll and races the same clock. The faster time wins, and the result card settles it. Challenges expire after 48 hours. They don't need the app installed to open your challenge, and neither of you needs an account.</p>
+      </details>
+      <details>
+        <summary>What if I have nobody to duel?</summary>
+        <p>Race yourself. Alea banks your last twelve timed sessions, so your own past workouts become opponents. Or take on one of four pace-setters, from The Warm-Up to The Machine. Those are designed benchmarks, not other people's data, and solo duels never leave your phone.</p>
+      </details>
+      <details>
+        <summary>What happens if I miss a day?</summary>
+        <p>You get one streak freeze per calendar month, and it covers a single missed day automatically, so the chain holds. Freezes don't stack, so it's insurance against one slip rather than a pile of skip days. Miss two days in a row with no freeze left and the streak restarts at one.</p>
+      </details>
+      <details>
+        <summary>Will it nag me?</summary>
+        <p>Only if you want it to. The daily reminder is one notification, off unless you turn it on. Once it has seen a few of your workouts it moves to about an hour before your usual training time; before that it just asks at 6pm.</p>
+      </details>
+      <details>
+        <summary>Can I change how it looks?</summary>
+        <p>Yes. Dark, light or follow your system theme, four accent colours, and soft or sharp corners. You can also resize both dice: the exercise die runs D4 to D20, the rep die D4 to D12.</p>
+      </details>
+      <details>
+        <summary>Is there an iPhone version?</summary>
+        <p>Not yet. Alea is on Android today, via Google Play.</p>
+      </details>
+      <details>
+        <summary>What data does Alea collect?</summary>
+        <p>Your workout history stays on your device. See the <a href="privacy.html">privacy policy</a> for the full detail.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= contact -->
+<section class="band band--panel" id="contact">
+  <div class="shell">
+    <div class="head rv">
+      <p class="eyebrow">Contact</p>
+      <h2>Something broken?<br /><span class="accent">Something missing?</span></h2>
+      <p class="lede">
+        Bug reports and feature requests both land in the same inbox, and a real
+        person reads them. Fill this in and it opens your own email app with the
+        message ready to send.
+      </p>
+    </div>
+    <form class="form rv" id="contactForm" action="mailto:alealabs.alea@gmail.com" method="post" enctype="text/plain">
+      <div class="field">
+        <label for="cf-name">Your name</label>
+        <input id="cf-name" name="name" type="text" autocomplete="name" placeholder="Optional" />
+      </div>
+      <div class="field">
+        <label for="cf-email">Your email</label>
+        <input id="cf-email" name="email" type="email" autocomplete="email" placeholder="So we can reply" />
+      </div>
+      <div class="field">
+        <label for="cf-topic">Topic</label>
+        <select id="cf-topic" name="topic">
+          <option>App support</option>
+          <option>Bug report</option>
+          <option>Feature request</option>
+          <option>Duel or share link problem</option>
+          <option>Privacy question</option>
+          <option>Something else</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="cf-device">Phone and Android version</label>
+        <input id="cf-device" name="device" type="text" placeholder="e.g. Pixel 8, Android 15" />
+      </div>
+      <div class="field field--full">
+        <label for="cf-message">Message</label>
+        <textarea id="cf-message" name="message" required placeholder="What happened, and what you expected instead."></textarea>
+      </div>
+      <div class="form__actions">
+        <button class="btn btn--solid" type="submit">Open my email app</button>
+        <p class="form__note">
+          Nothing is sent from this page and nothing is stored here. It just
+          hands the message to your mail app, addressed to
+          <a href="mailto:alealabs.alea@gmail.com">alealabs.alea@gmail.com</a>.
+        </p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ================================================================= cta -->
+<section class="band band--dark cta">
+  <div class="shell cta__in">
+    <p class="eyebrow eyebrow--center">Alea iacta est</p>
+    <h2>Stop planning.<br /><span class="accent">Start rolling.</span></h2>
+    <p class="lede" style="text-align:center">
+      The die is cast. Your only job is to do what it says.
+    </p>
+    <div class="cta__row">
+      <a class="btn btn--solid play" data-utm="footer" href="https://play.google.com/store/apps/details?id=com.alealabs.alea">Get it on Google Play</a>
+    </div>
+    <p class="cta__note">Free · No account · No equipment · <span class="tag">#TheDiceDecided</span></p>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================== footer -->
+<footer class="footer">
+  <div class="shell">
+    <div class="footer__in">
+      <a class="brand" href="#top" aria-label="Alea, home">
+        <span class="brand__mark" aria-hidden="true"><span></span></span>
+        <span class="brand__word">Alea</span>
+      </a>
+      <nav class="footer__links" aria-label="Footer">
+        <a href="#screenshots">Screenshots</a>
+        <a href="#how">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#duel">Duels</a>
+        <a href="#solo">Solo duels</a>
+        <a href="#more">More</a>
+        <a href="#cost">What it costs</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+        <a href="privacy.html">Privacy</a>
+        <a class="play" data-utm="footer_link" href="https://play.google.com/store/apps/details?id=com.alealabs.alea">Google Play</a>
+      </nav>
+    </div>
+    <div class="footer__legal">
+      <span>© <span id="year">2026</span> Alea Labs · Calisthenics, drawn daily</span>
+      <span>Google Play is a trademark of Google LLC.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  /* --- Play Store links carry install attribution -------------------- */
+  var PLAY = 'https://play.google.com/store/apps/details?id=com.alealabs.alea';
+  Array.prototype.forEach.call(document.querySelectorAll('a.play'), function (a) {
+    var utm = 'utm_source=website&utm_medium=web&utm_campaign=landing' +
+              '&utm_content=' + (a.dataset.utm || 'unknown');
+    a.href = PLAY + '&referrer=' + encodeURIComponent(utm);
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* --- sticky nav hairline ------------------------------------------- */
+  var nav = document.getElementById('nav');
+  var onScroll = function () { nav.classList.toggle('stuck', window.scrollY > 8); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* --- scroll reveals ------------------------------------------------- */
+  var rv = document.querySelectorAll('.rv');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.08 });
+    Array.prototype.forEach.call(rv, function (el) { io.observe(el); });
+  } else {
+    Array.prototype.forEach.call(rv, function (el) { el.classList.add('in'); });
+  }
+
+  /* --- screenshot gallery: arrows scroll by one card ------------------ */
+  var strip = document.getElementById('galStrip');
+  if (strip) {
+    var step = function () {
+      var card = strip.querySelector('.gal__item');
+      if (!card) return strip.clientWidth;
+      var gap = parseFloat(getComputedStyle(strip).columnGap || '0') || 0;
+      return card.getBoundingClientRect().width + gap;
+    };
+    document.getElementById('galPrev').addEventListener('click', function () {
+      strip.scrollBy({ left: -step(), behavior: 'smooth' });
+    });
+    document.getElementById('galNext').addEventListener('click', function () {
+      strip.scrollBy({ left: step(), behavior: 'smooth' });
+    });
+  }
+
+  /* --- contact form: hands off to the visitor's own mail app ---------- */
+  // Nothing leaves the page. The form only assembles a mailto: URL, so there
+  // is no endpoint, no storage, and no third party in the middle.
+  var form = document.getElementById('contactForm');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var get = function (id) { return (document.getElementById(id).value || '').trim(); };
+      var topic = get('cf-topic') || 'App support';
+      var lines = [];
+      if (get('cf-name')) lines.push('Name: ' + get('cf-name'));
+      if (get('cf-email')) lines.push('Email: ' + get('cf-email'));
+      if (get('cf-device')) lines.push('Device: ' + get('cf-device'));
+      if (lines.length) lines.push('');
+      lines.push(get('cf-message'));
+      window.location.assign('mailto:alealabs.alea@gmail.com' +
+        '?subject=' + encodeURIComponent('[Alea] ' + topic) +
+        '&body=' + encodeURIComponent(lines.join('\n')));
+    });
+  }
+
+  /* --- the roller: a real draw, same pools as the app ---------------- */
+  // Mirrors src/data/exercises.ts and src/data/repValues.ts. Dice default to
+  // D8 / D6, which is what the app ships with. Sides slice from the top.
+  var POOL = [
+    { n: 'Push-ups',  c: 'Push',   u: 'reps' },
+    { n: 'Pull-ups',  c: 'Pull',   u: 'reps' },
+    { n: 'Squats',    c: 'Legs',   u: 'reps' },
+    { n: 'Burpees',   c: 'Full body', u: 'reps' },
+    { n: 'Dips',      c: 'Push',   u: 'reps' },
+    { n: 'Lunges',    c: 'Legs',   u: 'reps' },
+    { n: 'Mountain Climbers', c: 'Core', u: 'reps' },
+    { n: 'Plank Hold', c: 'Core',  u: 'seconds' }
+  ];
+  var REPS = [5, 8, 10, 12, 15, 20];
+  var SECS = [20, 30, 45, 60, 90, 120];
+
+  var btn   = document.getElementById('rollBtn');
+  var cardEx = document.getElementById('cardEx'), cardRp = document.getElementById('cardRp');
+  var valEx = document.getElementById('valEx'), subEx = document.getElementById('subEx');
+  var valRp = document.getElementById('valRp'), subRp = document.getElementById('subRp');
+  var foot  = document.getElementById('rollFoot');
+  var count = document.getElementById('rollCount');
+  var rolls = 0, busy = false;
+
+  var NUDGE = [
+    'Go on then. Do it.',
+    'That was a real draw. So is the next one.',
+    'Three rolls in. The app keeps score. This page doesn’t.'
+  ];
+
+  function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
+
+  function paint() {
+    var ex = pick(POOL);
+    var secs = ex.u === 'seconds';
+    var n = secs ? pick(SECS) : pick(REPS);
+    cardEx.classList.remove('idle');
+    cardRp.classList.remove('idle');
+    valEx.textContent = ex.n.toUpperCase();
+    subEx.textContent = ex.c;
+    valRp.textContent = secs ? n + 's' : n;
+    subRp.textContent = secs ? 'Seconds' : 'Reps';
+  }
+
+  function roll() {
+    if (busy) return;
+    busy = true;
+    btn.textContent = 'Rolling';
+    cardEx.classList.add('rolling');
+    cardRp.classList.add('rolling');
+
+    var spins = 0;
+    var tick = setInterval(function () {
+      paint();
+      if (++spins >= 6) {
+        clearInterval(tick);
+        cardEx.classList.remove('rolling');
+        cardRp.classList.remove('rolling');
+        btn.textContent = 'Roll again';
+        busy = false;
+        rolls++;
+        count.textContent = rolls + (rolls === 1 ? ' roll' : ' rolls');
+        foot.innerHTML = rolls >= 3
+          ? NUDGE[2] + ' <a class="play" data-utm="roller" href="' + PLAY +
+            '&referrer=' + encodeURIComponent('utm_source=website&utm_medium=web&utm_campaign=landing&utm_content=roller') +
+            '">Get Alea</a>'
+          : NUDGE[Math.min(rolls - 1, 1)];
+      }
+    }, 55);
+  }
+
+  btn.addEventListener('click', roll);
+})();
+</script>
+</body>
 </html>

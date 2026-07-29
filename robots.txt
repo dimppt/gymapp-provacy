@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /duel.html
+
+Sitemap: https://aleacalisthenics.com/sitemap.xml

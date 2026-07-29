@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
-  <title>Duel — Alea</title>
+  <title>Duel · Alea</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono&display=swap" rel="stylesheet">
@@ -135,13 +136,13 @@
       <div class="eyebrow">Duel expired</div>
       <h1>The dice expired.</h1>
       <p class="sub">48 hours. No answer. Some people can't handle the roll.</p>
-      <a class="btn" id="e-store" href="#">Get Alea — roll your own</a>
+      <a class="btn" id="e-store" href="#">Get Alea, roll your own</a>
     </div>
 
     <div id="broken" class="hidden">
       <div class="eyebrow">Bad roll</div>
       <h1>This link is broken.</h1>
-      <p class="sub">The duel data didn't survive the trip. Ask for the link again — or start your own.</p>
+      <p class="sub">The duel data didn't survive the trip. Ask for the link again, or start your own.</p>
       <a class="btn" id="b-store" href="#">Get Alea on Google Play</a>
     </div>
 
@@ -152,7 +153,7 @@
       <h1 style="margin-top:26px">The dice decide.<br />You obey.</h1>
       <p class="sub">
         Two dice: one picks the exercise, one picks the reps. No planning, no
-        decision fatigue — roll and move. Challenge a friend to the exact same
+        decision fatigue. Roll and move. Challenge a friend to the exact same
         roll and let the clock settle it.
       </p>
       <a class="btn" id="l-store" href="#">Get Alea on Google Play</a>
@@ -167,7 +168,7 @@
     var TTL = 48 * 3600;
 
     // MUST stay in sync with EXERCISE_POOL order in src/data/exercises.ts.
-    // Links encode the index, so only ever APPEND here — never reorder/remove.
+    // Links encode the index, so only ever APPEND here. Never reorder/remove.
     var NAMES = [
       'Push-ups', 'Pull-ups', 'Squats', 'Burpees', 'Dips',
       'Lunges', 'Mountain Climbers', 'Plank Hold', 'Jumping Jacks', 'Box Jumps',
@@ -234,8 +235,10 @@
     // everything else tries the custom scheme with a visible store link.
     function appLink(raw) {
       if (/android/i.test(navigator.userAgent)) {
+        // Fallback carries BOTH attribution and the duel payload, so an install
+        // triggered from here lands the new user straight on the challenge.
         return 'intent://duel?d=' + raw + '#Intent;scheme=alea;package=' + PACKAGE +
-          ';S.browser_fallback_url=' + encodeURIComponent(PLAY_STORE) + ';end';
+          ';S.browser_fallback_url=' + encodeURIComponent(storeUrl('challenge_accept', raw)) + ';end';
       }
       return 'alea://duel?d=' + raw;
     }
@@ -243,8 +246,35 @@
     var raw = location.hash.slice(1);
     var p = raw ? decodePayload(raw) : null;
 
-    document.querySelectorAll('#c-store, #s-store, #e-store, #b-store, #l-store').forEach(function (a) {
-      a.href = PLAY_STORE;
+    // Tag every store link so Play Console can separate installs that came from
+    // the duel loop (and from WHICH state) vs. paid/social. Google preserves
+    // `referrer` through install; the value is a URL-encoded utm query string.
+    // utm_content mirrors the screen the visitor saw before tapping through.
+    var STORE_CONTENT = {
+      'c-store': 'challenge',   // a live challenge they were invited to
+      's-store': 'settled',     // a finished duel result
+      'e-store': 'expired',     // challenge timed out
+      'b-store': 'broken',      // undecodable link
+      'l-store': 'landing'      // bare duel.html with no payload
+    };
+    // `raw` (optional) is the encoded duel payload. Google preserves the whole
+    // referrer string through install, so carrying it here is what lets the app
+    // open ON the duel after a fresh install instead of a cold home screen.
+    // Capped conservatively: if the payload would make the referrer too long,
+    // attribution still goes through, we just lose the deferred routing.
+    var REFERRER_MAX = 700;
+    function storeUrl(content, raw) {
+      var utm = 'utm_source=duel_link&utm_medium=viral&utm_campaign=in_app_share' +
+                '&utm_content=' + content;
+      if (raw && (utm.length + raw.length + 3) <= REFERRER_MAX) utm += '&d=' + raw;
+      return PLAY_STORE + '&referrer=' + encodeURIComponent(utm);
+    }
+    // Carry the payload only where there's a live duel worth returning to.
+    // Expired / broken / bare-landing installs get attribution but no routing.
+    var CARRY_PAYLOAD = { 'c-store': true, 's-store': true };
+    Object.keys(STORE_CONTENT).forEach(function (id) {
+      var a = document.getElementById(id);
+      if (a) a.href = storeUrl(STORE_CONTENT[id], (p && CARRY_PAYLOAD[id]) ? raw : null);
     });
 
     if (!raw) {
