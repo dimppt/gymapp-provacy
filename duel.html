@@ -6,9 +6,10 @@
   <meta name="robots" content="noindex" />
   <title>Duel · Alea</title>
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono&display=swap" rel="stylesheet">
+  <!-- Self-hosted fonts: this page is the landing spot for every shared duel,
+       so it must not hand a visitor's IP to a third party. -->
+  <link rel="stylesheet" href="assets/fonts.css">
+  <link rel="preload" href="assets/fonts/anton-400-latin.woff2" as="font" type="font/woff2" crossorigin>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
