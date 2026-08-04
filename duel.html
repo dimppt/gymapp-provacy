@@ -219,7 +219,7 @@
     }
 
     function fmtTime(sec) {
-      if (sec <= 0) return '—';
+      if (sec <= 0) return '-';
       return Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0');
     }
     function fmtCountdown(sec) {

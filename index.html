@@ -578,6 +578,12 @@ h3{font-size:clamp(24px,3.4vw,34px);line-height:1}
   color:var(--on-dark-soft);text-decoration:none;
 }
 .footer__links a:hover{color:var(--orange)}
+.ph{
+  display:inline-block;line-height:0;margin-top:30px;border-radius:10px;
+  transition:opacity .18s ease,transform .18s ease;
+}
+.ph:hover{opacity:.82;transform:translateY(-2px)}
+.ph img{width:250px;height:auto;max-width:100%}
 .footer__legal{
   width:100%;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
   color:var(--on-dark-faint);border-top:1px solid var(--line-dark);padding-top:22px;
@@ -1195,6 +1201,13 @@ h3{font-size:clamp(24px,3.4vw,34px);line-height:1}
         <a class="play" data-utm="footer_link" href="https://play.google.com/store/apps/details?id=com.alealabs.alea">Google Play</a>
       </nav>
     </div>
+    <!-- Badge SVG is self-hosted rather than embedded from api.producthunt.com,
+         so no visitor data leaves this domain until someone actually clicks. -->
+    <a class="ph" href="https://www.producthunt.com/products/alea/reviews/new?utm_source=badge-product_review&amp;utm_medium=badge&amp;utm_source=badge-alea"
+       target="_blank" rel="noopener noreferrer">
+      <img src="assets/producthunt-review.svg" width="250" height="54" loading="lazy"
+           alt="Leave a review for Alea on Product Hunt" />
+    </a>
     <div class="footer__legal">
       <span>© <span id="year">2026</span> Alea Labs · Calisthenics, drawn daily</span>
       <span>Google Play is a trademark of Google LLC.</span>
