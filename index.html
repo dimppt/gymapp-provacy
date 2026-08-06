@@ -579,12 +579,15 @@ h3{font-size:clamp(24px,3.4vw,34px);line-height:1}
   color:var(--on-dark-soft);text-decoration:none;
 }
 .footer__links a:hover{color:var(--orange)}
-.ph{
-  display:inline-block;line-height:0;margin-top:30px;border-radius:10px;
+.badges{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:30px}
+.badge{
+  display:inline-block;line-height:0;border-radius:10px;
   transition:opacity .18s ease,transform .18s ease;
 }
-.ph:hover{opacity:.82;transform:translateY(-2px)}
-.ph img{width:250px;height:auto;max-width:100%}
+.badge:hover{opacity:.82;transform:translateY(-2px)}
+.badge img{height:auto;max-width:100%}
+.badge--ph img{width:250px}
+.badge--dt img{width:200px}
 .footer__legal{
   width:100%;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
   color:var(--on-dark-faint);border-top:1px solid var(--line-dark);padding-top:22px;
@@ -1202,13 +1205,22 @@ h3{font-size:clamp(24px,3.4vw,34px);line-height:1}
         <a class="play" data-utm="footer_link" href="https://play.google.com/store/apps/details?id=com.alealabs.alea">Google Play</a>
       </nav>
     </div>
-    <!-- Badge SVG is self-hosted rather than embedded from api.producthunt.com,
-         so no visitor data leaves this domain until someone actually clicks. -->
-    <a class="ph" href="https://www.producthunt.com/products/alea/reviews/new?utm_source=badge-product_review&amp;utm_medium=badge&amp;utm_source=badge-alea"
-       target="_blank" rel="noopener noreferrer">
-      <img src="assets/producthunt-review.svg" width="250" height="54" loading="lazy"
-           alt="Leave a review for Alea on Product Hunt" />
-    </a>
+    <!-- Both badge SVGs are self-hosted rather than embedded from
+         api.producthunt.com and directree.io, so no visitor data leaves this
+         domain until someone actually clicks through. -->
+    <div class="badges">
+      <a class="badge badge--ph" href="https://www.producthunt.com/products/alea/reviews/new?utm_source=badge-product_review&amp;utm_medium=badge&amp;utm_source=badge-alea"
+         target="_blank" rel="noopener noreferrer">
+        <img src="assets/producthunt-review.svg" width="250" height="54" loading="lazy"
+             alt="Leave a review for Alea on Product Hunt" />
+      </a>
+      <a class="badge badge--dt" href="https://www.directree.io" target="_blank" rel="noopener">
+        <!-- height matches the SVG's own viewBox (200 x 33.04); the snippet's
+             37 would reserve the wrong box and nudge the layout on load -->
+        <img src="assets/directree-verified.svg" width="200" height="33" loading="lazy"
+             alt="Verified on Directree" />
+      </a>
+    </div>
     <div class="footer__legal">
       <span>© <span id="year">2026</span> Alea Labs · Calisthenics, drawn daily</span>
       <span>Google Play is a trademark of Google LLC.</span>
