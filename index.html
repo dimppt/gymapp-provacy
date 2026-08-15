@@ -588,6 +588,7 @@ h3{font-size:clamp(24px,3.4vw,34px);line-height:1}
 .badge img{height:auto;max-width:100%}
 .badge--ph img{width:250px}
 .badge--dt img{width:200px}
+.badge--sb img{width:206px}
 .footer__legal{
   width:100%;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
   color:var(--on-dark-faint);border-top:1px solid var(--line-dark);padding-top:22px;
@@ -622,7 +623,7 @@ h3{font-size:clamp(24px,3.4vw,34px);line-height:1}
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
     </nav>
-    <a class="btn btn--solid btn--sm play" data-utm="nav" href="https://play.google.com/store/apps/details?id=com.alealabs.alea">Get Alea</a>
+    <a class="btn btn--solid btn--sm play" data-utm="nav" rel="nofollow" href="https://play.google.com/store/apps/details?id=com.alealabs.alea">Get Alea</a>
   </div>
 </header>
 
@@ -639,7 +640,7 @@ h3{font-size:clamp(24px,3.4vw,34px);line-height:1}
         no decision to make, nothing to buy. Just roll and move.
       </p>
       <div class="hero__cta">
-        <a class="btn btn--solid play" data-utm="hero" href="https://play.google.com/store/apps/details?id=com.alealabs.alea">Get it on Google Play</a>
+        <a class="btn btn--solid play" data-utm="hero" rel="nofollow" href="https://play.google.com/store/apps/details?id=com.alealabs.alea">Get it on Google Play</a>
         <a class="btn btn--ghost" href="#how">See how it works</a>
       </div>
       <p class="hero__note"><b>Free</b> &nbsp;·&nbsp; <b>No account</b> &nbsp;·&nbsp; <b>No equipment</b> &nbsp;·&nbsp; <b>Works offline</b></p>
@@ -880,7 +881,7 @@ h3{font-size:clamp(24px,3.4vw,34px);line-height:1}
       </ol>
       <p>Nobody to send it to yet? <a href="#solo" style="color:#131316">Race yourself instead</a>. Same duel, no one else required.</p>
       <div class="hero__cta">
-        <a class="btn btn--solid play" data-utm="duel" href="https://play.google.com/store/apps/details?id=com.alealabs.alea">Start a duel</a>
+        <a class="btn btn--solid play" data-utm="duel" rel="nofollow" href="https://play.google.com/store/apps/details?id=com.alealabs.alea">Start a duel</a>
       </div>
     </div>
     <div class="feat__art rv">
@@ -1175,7 +1176,7 @@ h3{font-size:clamp(24px,3.4vw,34px);line-height:1}
       The die is cast. Your only job is to do what it says.
     </p>
     <div class="cta__row">
-      <a class="btn btn--solid play" data-utm="footer" href="https://play.google.com/store/apps/details?id=com.alealabs.alea">Get it on Google Play</a>
+      <a class="btn btn--solid play" data-utm="footer" rel="nofollow" href="https://play.google.com/store/apps/details?id=com.alealabs.alea">Get it on Google Play</a>
     </div>
     <p class="cta__note">Free · No account · No equipment · <span class="tag">#TheDiceDecided</span></p>
   </div>
@@ -1202,7 +1203,7 @@ h3{font-size:clamp(24px,3.4vw,34px);line-height:1}
         <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
         <a href="privacy.html">Privacy</a>
-        <a class="play" data-utm="footer_link" href="https://play.google.com/store/apps/details?id=com.alealabs.alea">Google Play</a>
+        <a class="play" data-utm="footer_link" rel="nofollow" href="https://play.google.com/store/apps/details?id=com.alealabs.alea">Google Play</a>
       </nav>
     </div>
     <!-- Both badge SVGs are self-hosted rather than embedded from
@@ -1210,15 +1211,21 @@ h3{font-size:clamp(24px,3.4vw,34px);line-height:1}
          domain until someone actually clicks through. -->
     <div class="badges">
       <a class="badge badge--ph" href="https://www.producthunt.com/products/alea/reviews/new?utm_source=badge-product_review&amp;utm_medium=badge&amp;utm_source=badge-alea"
-         target="_blank" rel="noopener noreferrer">
+         target="_blank" rel="noopener noreferrer nofollow">
         <img src="assets/producthunt-review.svg" width="250" height="54" loading="lazy"
              alt="Leave a review for Alea on Product Hunt" />
       </a>
-      <a class="badge badge--dt" href="https://www.directree.io" target="_blank" rel="noopener">
+      <a class="badge badge--dt" href="https://www.directree.io" target="_blank" rel="noopener nofollow">
         <!-- height matches the SVG's own viewBox (200 x 33.04); the snippet's
              37 would reserve the wrong box and nudge the layout on load -->
         <img src="assets/directree-verified.svg" width="200" height="33" loading="lazy"
              alt="Verified on Directree" />
+      </a>
+      <a class="badge badge--sb" href="https://startupbase.io/products/alea-calisthenics-dice?utm_source=startupbase&amp;utm_medium=badge&amp;utm_campaign=launch-badge-dark"
+         target="_blank" rel="noopener noreferrer nofollow">
+        <!-- viewBox is 300 x 80, so 55px tall works out to 206px wide -->
+        <img src="assets/startupbase-launched.svg" width="206" height="55" loading="lazy"
+             alt="Launched on StartupBase" />
       </a>
     </div>
     <div class="footer__legal">
@@ -1362,7 +1369,7 @@ h3{font-size:clamp(24px,3.4vw,34px);line-height:1}
         rolls++;
         count.textContent = rolls + (rolls === 1 ? ' roll' : ' rolls');
         foot.innerHTML = rolls >= 3
-          ? NUDGE[2] + ' <a class="play" data-utm="roller" href="' + PLAY +
+          ? NUDGE[2] + ' <a class="play" data-utm="roller" rel="nofollow" href="' + PLAY +
             '&referrer=' + encodeURIComponent('utm_source=website&utm_medium=web&utm_campaign=landing&utm_content=roller') +
             '">Get Alea</a>'
           : NUDGE[Math.min(rolls - 1, 1)];
