@@ -28,18 +28,65 @@
 <link rel="preload" href="assets/fonts/anton-400-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="assets/fonts/hankengrotesk-var-latin.woff2" as="font" type="font/woff2" crossorigin />
 
+<!-- One linked entity graph rather than a lone SoftwareApplication node, so the
+     app, the studio and the founder resolve to each other by @id instead of
+     sitting as three unrelated strings. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Alea – Calisthenics Dice",
-  "operatingSystem": "Android",
-  "applicationCategory": "HealthApplication",
-  "url": "https://aleacalisthenics.com/",
-  "installUrl": "https://play.google.com/store/apps/details?id=com.alealabs.alea",
-  "description": "Alea turns your workout into a roll. One die picks the exercise, one picks the reps. Random bodyweight calisthenics workouts, daily streaks and duels with friends. No account, no equipment.",
-  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "author": { "@type": "Organization", "name": "Alea Labs" }
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://aleacalisthenics.com/#website",
+      "url": "https://aleacalisthenics.com/",
+      "name": "Alea",
+      "inLanguage": "en",
+      "publisher": { "@id": "https://aleacalisthenics.com/#org" }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://aleacalisthenics.com/#app",
+      "name": "Alea – Calisthenics Dice",
+      "operatingSystem": "Android",
+      "applicationCategory": "HealthApplication",
+      "url": "https://aleacalisthenics.com/",
+      "installUrl": "https://play.google.com/store/apps/details?id=com.alealabs.alea",
+      "description": "Alea turns your workout into a roll. One die picks the exercise, one picks the reps. Random bodyweight calisthenics workouts, daily streaks and duels with friends. No account, no equipment.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "creator": { "@id": "https://aleacalisthenics.com/#founder" },
+      "publisher": { "@id": "https://aleacalisthenics.com/#org" }
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://aleacalisthenics.com/#org",
+      "name": "Alea Labs",
+      "url": "https://aleacalisthenics.com/",
+      "logo": "https://aleacalisthenics.com/assets/icon-512.png",
+      "founder": { "@id": "https://aleacalisthenics.com/#founder" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://aleacalisthenics.com/#founder",
+      "name": "Dimitrios Papatsanis",
+      "jobTitle": "Senior SEO / GEO Specialist",
+      "description": "Senior SEO / GEO Specialist with over ten years in technical SEO, international SEO, eCommerce and AI-search visibility. Founder of Alea Labs and creator of Alea.",
+      "url": "https://aleacalisthenics.com/#founder",
+      "mainEntityOfPage": { "@id": "https://aleacalisthenics.com/#website" },
+      "sameAs": [
+        "https://github.com/dimppt"
+      ],
+      "knowsAbout": [
+        "Technical SEO",
+        "International SEO",
+        "Generative Engine Optimization",
+        "AI search visibility",
+        "eCommerce SEO",
+        "Shopify",
+        "Website migrations",
+        "Conversion rate optimisation"
+      ]
+    }
+  ]
 }
 </script>
 
@@ -174,7 +221,7 @@ h3{font-size:clamp(24px,3.4vw,34px);line-height:1}
   width:11px;height:11px;border-radius:4px;border:2.5px solid #131316;display:block;
 }
 .brand__word{font-family:var(--display);font-size:22px;letter-spacing:.14em;text-transform:uppercase;line-height:1}
-.nav__links{display:flex;gap:28px}
+.nav__links{display:flex;gap:22px}
 .nav__links a{
   font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
   color:var(--on-dark-soft);text-decoration:none;transition:color .18s ease;
@@ -377,6 +424,39 @@ h3{font-size:clamp(24px,3.4vw,34px);line-height:1}
   margin-top:22px;font-family:var(--mono);font-size:11.5px;line-height:1.8;
   letter-spacing:.02em;color:var(--on-dark-faint);
 }
+
+/* --------------------------------------------------------------- founder */
+.founder{
+  display:grid;grid-template-columns:minmax(0,260px) minmax(0,1fr);
+  gap:clamp(28px,4.5vw,60px);align-items:start;margin-top:clamp(38px,5vw,54px);
+}
+@media (max-width:760px){.founder{grid-template-columns:1fr;gap:30px}}
+.founder__portrait{
+  width:100%;max-width:260px;aspect-ratio:1;border-radius:22px;overflow:hidden;
+  background:var(--surface);border:1px solid var(--line-dark);
+  display:grid;place-items:center;position:relative;
+}
+.founder__portrait img{width:100%;height:100%;object-fit:cover;display:block}
+/* Stand-in until a real photograph is dropped in; drawn rather than a broken
+   <img>, so the slot never renders as a missing-image icon. */
+.founder__mono{font-family:var(--display);font-size:76px;color:var(--orange);line-height:1;letter-spacing:.04em}
+.founder__role{
+  font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--orange);margin-top:16px;
+}
+.founder h3{font-size:clamp(28px,4vw,42px);line-height:1;margin-top:10px}
+.founder p{margin-top:18px;color:var(--on-dark-soft);max-width:60ch}
+.founder__meta{
+  display:flex;flex-wrap:wrap;gap:10px 44px;margin-top:24px;
+  padding-top:20px;border-top:1px solid var(--line-dark);
+}
+.founder__meta div{display:flex;flex-direction:column;gap:4px}
+.founder__meta dt,.founder__meta .k{
+  font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--on-dark-faint);
+}
+.founder__meta .v{font-family:var(--display);font-size:22px;color:var(--on-dark)}
+.founder__links{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
 
 /* --------------------------------------------------------------- contact */
 .form{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:clamp(32px,4vw,44px);max-width:720px}
@@ -621,6 +701,7 @@ h3{font-size:clamp(24px,3.4vw,34px);line-height:1}
       <a href="#duel">Duels</a>
       <a href="#more">More</a>
       <a href="#faq">FAQ</a>
+      <a href="#founder">About</a>
       <a href="#contact">Contact</a>
     </nav>
     <a class="btn btn--solid btn--sm play" data-utm="nav" rel="nofollow" href="https://play.google.com/store/apps/details?id=com.alealabs.alea">Get Alea</a>
@@ -1115,6 +1196,64 @@ h3{font-size:clamp(24px,3.4vw,34px);line-height:1}
   </div>
 </section>
 
+<!-- ============================================================= founder -->
+<section class="band band--dark" id="founder">
+  <div class="shell">
+    <div class="head rv">
+      <p class="eyebrow">Who built this</p>
+      <h2>One person.<br /><span class="accent">No growth team.</span></h2>
+    </div>
+    <div class="founder rv">
+      <div>
+        <!-- Swap the monogram for <img src="assets/founder.jpg" width="520"
+             height="520" alt="Dimitrios Papatsanis" /> when the photo is ready. -->
+        <figure class="founder__portrait">
+          <span class="founder__mono" aria-hidden="true">DP</span>
+        </figure>
+      </div>
+      <div>
+        <p class="founder__role">Dimitrios Papatsanis &nbsp;·&nbsp; Founder, Alea Labs</p>
+        <h3>Senior SEO<br />&amp; GEO Specialist</h3>
+        <p>
+          Ten-plus years in technical SEO, international SEO and eCommerce:
+          Shopify builds, site migrations, CRO alignment, and more recently the
+          work of staying visible inside AI search rather than just the ten blue
+          links.
+        </p>
+        <p>
+          Alea came out of that. Spending your days measuring how people find
+          things makes you notice how much software is built to measure people
+          back. So this one has no account, no backend, no analytics and no
+          third-party requests. The whole app is one button, and every duel
+          travels inside its own link. It is the app I wanted, built the way I
+          think apps should be built.
+        </p>
+        <div class="founder__meta">
+          <div><span class="k">Experience</span><span class="v">10+ yrs</span></div>
+          <div><span class="k">Focus</span><span class="v">SEO &amp; GEO</span></div>
+          <div><span class="k">Studio</span><span class="v">Alea Labs</span></div>
+        </div>
+        <p class="label" style="margin-top:26px">Areas of work</p>
+        <ul class="chips" style="margin-top:12px">
+          <li>Technical SEO</li>
+          <li>International SEO</li>
+          <li>Generative engine optimisation</li>
+          <li>AI-search visibility</li>
+          <li>eCommerce SEO</li>
+          <li>Shopify</li>
+          <li>Migrations</li>
+          <li>CRO alignment</li>
+        </ul>
+        <div class="founder__links">
+          <a class="btn btn--ghost btn--sm" href="https://github.com/dimppt"
+             target="_blank" rel="me noopener nofollow">GitHub</a>
+          <a class="btn btn--ghost btn--sm" href="#contact">Get in touch</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============================================================= contact -->
 <section class="band band--panel" id="contact">
   <div class="shell">
@@ -1201,6 +1340,7 @@ h3{font-size:clamp(24px,3.4vw,34px);line-height:1}
         <a href="#more">More</a>
         <a href="#cost">What it costs</a>
         <a href="#faq">FAQ</a>
+        <a href="#founder">About</a>
         <a href="#contact">Contact</a>
         <a href="privacy.html">Privacy</a>
         <a class="play" data-utm="footer_link" rel="nofollow" href="https://play.google.com/store/apps/details?id=com.alealabs.alea">Google Play</a>
