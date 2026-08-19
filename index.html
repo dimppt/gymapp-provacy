@@ -40,29 +40,136 @@
       "@id": "https://aleacalisthenics.com/#website",
       "url": "https://aleacalisthenics.com/",
       "name": "Alea",
+      "description": "Alea turns your workout into a roll. Random bodyweight calisthenics workouts, daily streaks and duels.",
       "inLanguage": "en",
-      "publisher": { "@id": "https://aleacalisthenics.com/#org" }
+      "publisher": {
+        "@id": "https://aleacalisthenics.com/#org"
+      },
+      "copyrightHolder": {
+        "@id": "https://aleacalisthenics.com/#org"
+      },
+      "copyrightYear": 2026
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://aleacalisthenics.com/#webpage",
+      "url": "https://aleacalisthenics.com/",
+      "name": "Alea: Calisthenics Dice. Roll the dice, do the reps.",
+      "description": "Alea turns your workout into a roll. One die picks the exercise, one picks the reps. No plan, no equipment, no account.",
+      "isPartOf": {
+        "@id": "https://aleacalisthenics.com/#website"
+      },
+      "about": {
+        "@id": "https://aleacalisthenics.com/#app"
+      },
+      "primaryImageOfPage": {
+        "@id": "https://aleacalisthenics.com/#img-ready"
+      },
+      "inLanguage": "en",
+      "datePublished": "2026-07-29",
+      "dateModified": "2026-08-04"
     },
     {
       "@type": "SoftwareApplication",
       "@id": "https://aleacalisthenics.com/#app",
       "name": "Alea – Calisthenics Dice",
+      "alternateName": "Alea",
       "operatingSystem": "Android",
       "applicationCategory": "HealthApplication",
+      "applicationSubCategory": "Fitness",
       "url": "https://aleacalisthenics.com/",
       "installUrl": "https://play.google.com/store/apps/details?id=com.alealabs.alea",
+      "downloadUrl": "https://play.google.com/store/apps/details?id=com.alealabs.alea",
       "description": "Alea turns your workout into a roll. One die picks the exercise, one picks the reps. Random bodyweight calisthenics workouts, daily streaks and duels with friends. No account, no equipment.",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "creator": { "@id": "https://aleacalisthenics.com/#founder" },
-      "publisher": { "@id": "https://aleacalisthenics.com/#org" }
+      "inLanguage": "en",
+      "isAccessibleForFree": true,
+      "permissions": "Notifications (optional, for the daily reminder)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "featureList": [
+        "Two-dice random workout generator",
+        "Configurable dice: D4 to D20 exercises, D4 to D12 reps",
+        "Twenty bodyweight exercises across push, pull, legs, core, cardio, plyometrics and balance",
+        "Timed holds drawn in seconds",
+        "Streak insurance",
+        "Reminders that learn",
+        "Make it yours",
+        "Your dice, your rules",
+        "Holds, not just reps",
+        "Every roll counted",
+        "100-rep sessions and tailored workouts",
+        "Duels against friends via a shareable link",
+        "Solo duels against your past self or four pace-setters",
+        "Shareable roll and result cards",
+        "Works offline with no account"
+      ],
+      "screenshot": [
+        {
+          "@id": "https://aleacalisthenics.com/#img-ready"
+        },
+        {
+          "@id": "https://aleacalisthenics.com/#img-roll"
+        },
+        {
+          "@id": "https://aleacalisthenics.com/#img-stats"
+        },
+        {
+          "@id": "https://aleacalisthenics.com/#img-tailored"
+        },
+        {
+          "@id": "https://aleacalisthenics.com/#img-duel"
+        },
+        {
+          "@id": "https://aleacalisthenics.com/#img-share"
+        }
+      ],
+      "creator": {
+        "@id": "https://aleacalisthenics.com/#founder"
+      },
+      "publisher": {
+        "@id": "https://aleacalisthenics.com/#org"
+      },
+      "author": {
+        "@id": "https://aleacalisthenics.com/#org"
+      },
+      "maintainer": {
+        "@id": "https://aleacalisthenics.com/#founder"
+      }
     },
     {
       "@type": "Organization",
       "@id": "https://aleacalisthenics.com/#org",
       "name": "Alea Labs",
       "url": "https://aleacalisthenics.com/",
-      "logo": "https://aleacalisthenics.com/assets/icon-512.png",
-      "founder": { "@id": "https://aleacalisthenics.com/#founder" }
+      "logo": {
+        "@id": "https://aleacalisthenics.com/#logo"
+      },
+      "image": {
+        "@id": "https://aleacalisthenics.com/#logo"
+      },
+      "email": "alealabs.alea@gmail.com",
+      "founder": {
+        "@id": "https://aleacalisthenics.com/#founder"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "email": "alealabs.alea@gmail.com",
+        "availableLanguage": [
+          "English"
+        ]
+      }
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://aleacalisthenics.com/#logo",
+      "url": "https://aleacalisthenics.com/assets/icon-512.png",
+      "width": 512,
+      "height": 512
     },
     {
       "@type": "Person",
@@ -71,7 +178,12 @@
       "jobTitle": "Senior SEO / GEO Specialist",
       "description": "Senior SEO / GEO Specialist with over ten years in technical SEO, international SEO, eCommerce and AI-search visibility. Founder of Alea Labs and creator of Alea.",
       "url": "https://aleacalisthenics.com/#founder",
-      "mainEntityOfPage": { "@id": "https://aleacalisthenics.com/#website" },
+      "mainEntityOfPage": {
+        "@id": "https://aleacalisthenics.com/#webpage"
+      },
+      "worksFor": {
+        "@id": "https://aleacalisthenics.com/#org"
+      },
       "sameAs": [
         "https://www.linkedin.com/in/dimitriospapatsanis/",
         "https://github.com/dimppt"
@@ -86,6 +198,269 @@
         "Website migrations",
         "Conversion rate optimisation"
       ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://aleacalisthenics.com/#faq",
+      "isPartOf": {
+        "@id": "https://aleacalisthenics.com/#webpage"
+      },
+      "inLanguage": "en",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is Alea free?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Alea is free to download, and the whole core loop (rolling the dice) is free to use. No ads, no in-app purchases, no trial that expires."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need any equipment?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Almost none. Everything is bodyweight: the floor, a wall and you. A few pull movements (pull-ups, inverted rows, muscle-ups) want a bar or a sturdy edge. Everything else needs nothing at all."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need an account?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. There's no sign-up, no email, no password. Open the app and roll. Even duels work without accounts, because the challenge travels inside the link."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it work offline?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Alea runs entirely on your phone and keeps your history in local storage, so it works with no signal at all."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What exercises are in it?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Twenty bodyweight movements across push, pull, legs, core, cardio, plyometrics and balance, from push-ups, squats and burpees to pistol squats, L-sit holds and muscle-ups. Your dice size decides how many of them are in play."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it for beginners or advanced?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Both, and you set which. A small exercise die keeps you on the fundamentals with gentle rep counts; scale it up and the pool grows into the hard stuff with rep values up to 75."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do duels work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Finish a workout against the clock and share the challenge card. Whoever opens it gets your exact roll and races the same clock. The faster time wins, and the result card settles it. Challenges expire after 48 hours. They don't need the app installed to open your challenge, and neither of you needs an account."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if I have nobody to duel?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Race yourself. Alea banks your last twelve timed sessions, so your own past workouts become opponents. Or take on one of four pace-setters, from The Warm-Up to The Machine. Those are designed benchmarks, not other people's data, and solo duels never leave your phone."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens if I miss a day?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You get one streak freeze per calendar month, and it covers a single missed day automatically, so the chain holds. Freezes don't stack, so it's insurance against one slip rather than a pile of skip days. Miss two days in a row with no freeze left and the streak restarts at one."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will it nag me?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Only if you want it to. The daily reminder is one notification, off unless you turn it on. Once it has seen a few of your workouts it moves to about an hour before your usual training time; before that it just asks at 6pm."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I change how it looks?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Dark, light or follow your system theme, four accent colours, and soft or sharp corners. You can also resize both dice: the exercise die runs D4 to D20, the rep die D4 to D12."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there an iPhone version?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not yet. Alea is on Android today, via Google Play."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What data does Alea collect?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your workout history stays on your device. See the privacy policy for the full detail."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://aleacalisthenics.com/#howto-roll",
+      "name": "How to use Alea",
+      "description": "Three seconds from deciding to moving: roll the dice, do what they say, come back tomorrow.",
+      "isPartOf": {
+        "@id": "https://aleacalisthenics.com/#webpage"
+      },
+      "inLanguage": "en",
+      "totalTime": "PT1M",
+      "tool": {
+        "@type": "HowToTool",
+        "name": "An Android phone"
+      },
+      "supply": {
+        "@type": "HowToSupply",
+        "name": "Your bodyweight"
+      },
+      "estimatedCost": {
+        "@type": "MonetaryAmount",
+        "currency": "USD",
+        "value": "0"
+      },
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Roll",
+          "text": "One tap. The exercise die draws your movement, the rep die draws your number. That's the plan.",
+          "url": "https://aleacalisthenics.com/#how"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Move",
+          "text": "Twenty bodyweight exercises: push, pull, legs, core, cardio, holds. Do the reps wherever you're standing.",
+          "url": "https://aleacalisthenics.com/#how"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Repeat",
+          "text": "Roll again, or bank it. Come back tomorrow and the streak grows. Don't break the chain.",
+          "url": "https://aleacalisthenics.com/#how"
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://aleacalisthenics.com/#howto-duel",
+      "name": "How to duel someone in Alea",
+      "description": "Send anyone your exact roll and let the clock settle it. No account, no friend request.",
+      "isPartOf": {
+        "@id": "https://aleacalisthenics.com/#webpage"
+      },
+      "inLanguage": "en",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "text": "Do the workout against the clock.",
+          "url": "https://aleacalisthenics.com/#duel"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "text": "Share the card: WhatsApp, Messenger, SMS, anywhere.",
+          "url": "https://aleacalisthenics.com/#duel"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "text": "They open it and race your exact roll.",
+          "url": "https://aleacalisthenics.com/#duel"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "text": "Fastest time takes it. The other one knows.",
+          "url": "https://aleacalisthenics.com/#duel"
+        }
+      ]
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://aleacalisthenics.com/#img-ready",
+      "url": "https://aleacalisthenics.com/assets/shot-ready.png",
+      "contentUrl": "https://aleacalisthenics.com/assets/shot-ready.png",
+      "width": 1080,
+      "height": 1920,
+      "caption": "The roll — Two dice, one tap",
+      "description": "Alea's home screen before rolling, with the exercise and reps dice cards and a large Roll button.",
+      "representativeOfPage": true
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://aleacalisthenics.com/#img-roll",
+      "url": "https://aleacalisthenics.com/assets/shot-roll.png",
+      "contentUrl": "https://aleacalisthenics.com/assets/shot-roll.png",
+      "width": 1080,
+      "height": 1920,
+      "caption": "Your draw — Exercise by reps",
+      "description": "A drawn roll in Alea: Dips times 10, logged under today with a 1-day streak.",
+      "representativeOfPage": false
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://aleacalisthenics.com/#img-stats",
+      "url": "https://aleacalisthenics.com/assets/shot-stats.png",
+      "contentUrl": "https://aleacalisthenics.com/assets/shot-stats.png",
+      "width": 1080,
+      "height": 1920,
+      "caption": "The streak — Lifetime numbers",
+      "description": "Alea's stats screen showing current streak, rolls, reps, the week strip and top exercises.",
+      "representativeOfPage": false
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://aleacalisthenics.com/#img-tailored",
+      "url": "https://aleacalisthenics.com/assets/shot-tailored.png",
+      "contentUrl": "https://aleacalisthenics.com/assets/shot-tailored.png",
+      "width": 390,
+      "height": 844,
+      "caption": "Full sessions — Tuned to your time",
+      "description": "Alea's tailored workout builder with difficulty, length and body-area controls.",
+      "representativeOfPage": false
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://aleacalisthenics.com/#img-duel",
+      "url": "https://aleacalisthenics.com/assets/shot-duel.png",
+      "contentUrl": "https://aleacalisthenics.com/assets/shot-duel.png",
+      "width": 390,
+      "height": 844,
+      "caption": "Duel settled — Faster time wins",
+      "description": "A settled Alea duel showing 11:58 against 12:40 over 135 reps, with Rematch and Share It.",
+      "representativeOfPage": false
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://aleacalisthenics.com/#img-share",
+      "url": "https://aleacalisthenics.com/assets/shot-share.png",
+      "contentUrl": "https://aleacalisthenics.com/assets/shot-share.png",
+      "width": 390,
+      "height": 844,
+      "caption": "Share card — Built for stories",
+      "description": "An Alea share card reading “The dice decided. I obeyed.” with reps, time and difficulty.",
+      "representativeOfPage": false
     }
   ]
 }
