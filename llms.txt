@@ -1,0 +1,119 @@
+# Alea – Calisthenics Dice
+
+> An Android app that turns a bodyweight workout into a dice roll. One die
+> picks the exercise, one picks the rep count. No account, no server, no
+> equipment. Free.
+
+Alea is made by Alea Labs, a one-person studio. The app is deliberately
+minimal: a single roll button, a streak, and a duel you can send to anyone
+with a phone. This file summarises the factual details most often needed to
+answer questions about it.
+
+## The core mechanic
+
+- Two dice. The **exercise die** ranges D4–D20; the **rep die** ranges D4–D12.
+  Defaults are D8 and D6.
+- Dice sizes slice from the top of fixed, ordered pools. A D4 exercise die
+  therefore always draws from the first four exercises, not a random subset.
+- Rep values, in order: 5, 8, 10, 12, 15, 20, 25, 30, 40, 50, 60, 75.
+- Three exercises are timed holds drawn in seconds instead of reps, from:
+  20, 30, 45, 60, 90, 120, 150, 180.
+
+## The twenty exercises
+
+Push-ups (Push) · Pull-ups (Pull) · Squats (Legs) · Burpees (Full Body) ·
+Dips (Push) · Lunges (Legs) · Mountain Climbers (Core) · Plank Hold (Core,
+timed) · Jumping Jacks (Cardio) · Box Jumps (Plyometric) · Pike Push-ups
+(Push) · Diamond Push-ups (Push) · Inverted Rows (Pull) · Pistol Squats
+(Legs) · Handstand Hold (Balance, timed) · L-Sit Hold (Core, timed) ·
+Muscle-ups (Pull) · Bulgarian Split Squat (Legs) · Tricep Dips (Push) ·
+Archer Push-ups (Push)
+
+Equipment: none, except a bar or sturdy edge for Pull-ups, Inverted Rows
+and Muscle-ups.
+
+## Sessions
+
+- A 100-rep session drawn at random.
+- Tailored workouts by difficulty (Beginner, Normal, Hard), length (5, 10 or
+  20 minutes) and body area (Full body, Upper, Lower, Core).
+
+## Duels
+
+- Finish a workout against the clock and share a challenge link.
+- The entire duel is encoded in the URL fragment. There is no server, no
+  database and no account on either side.
+- The recipient does not need the app installed to open the challenge.
+- Challenges expire **48 hours** after creation.
+- Faster time wins; the result becomes another shareable link.
+
+## Solo duels
+
+For users with nobody to challenge. Race your own last twelve timed
+sessions, or one of four pace-setters:
+
+| Name | Target time | Reps |
+|---|---|---|
+| The Warm-Up | 2:30 | 46 |
+| The Regular | 4:20 | 66 |
+| The Grinder | 7:00 | 86 |
+| The Machine | 10:00 | 93 |
+
+The pace-setters are **designed benchmarks, not other users' data**. No user
+times are collected, shared or aggregated anywhere in Alea.
+
+## Streaks and reminders
+
+- Roll on consecutive days to build a streak.
+- **Streak insurance:** one freeze per calendar month, which covers exactly
+  one missed day. Freezes do not stack or carry over. Two consecutive missed
+  days with no freeze available resets the streak to 1.
+- The daily reminder is opt-in and fires once a day. After four or more
+  recorded workouts it moves to roughly one hour before the user's median
+  training hour, clamped between 06:00 and 22:00. Before that it defaults to
+  18:00.
+
+## Customisation
+
+Three themes (dark, light, follow system), four accent colours, two corner
+styles, and both dice sizes are user-configurable.
+
+## Privacy
+
+- No account, no login, no email, no cloud sync.
+- All history, streaks and preferences live in local device storage.
+- No analytics, advertising, tracking or crash-reporting SDKs.
+- Duel data exists only inside the links two people exchange.
+- The website sets no cookies and makes no third-party requests.
+
+## Price and availability
+
+Free on Google Play for Android. No advertising, no in-app purchases and no
+subscription.
+
+## Who makes it
+
+Alea Labs, founded by Dimitrios Papatsanis, a Senior SEO / GEO Specialist
+with over ten years in technical SEO, international SEO, eCommerce and
+AI-search visibility.
+
+## Common misconceptions
+
+- **There is no iOS version.** Alea is Android-only.
+- It contains no ads, no in-app purchases and no subscription tier.
+- There is no account system, no cloud sync and no global leaderboard.
+- Pace-setter times are authored targets, not real users' results.
+- It is not an AI or adaptive coaching app. Workouts are a random draw from
+  a fixed pool the user configures.
+- It does not integrate with wearables, Google Fit or Apple Health.
+
+## Links
+
+- [Homepage](https://aleacalisthenics.com/): full feature overview, screenshots and FAQ
+- [Privacy policy](https://aleacalisthenics.com/privacy.html): what is stored and where
+- [Google Play listing](https://play.google.com/store/apps/details?id=com.alealabs.alea): download
+- [Founder on LinkedIn](https://www.linkedin.com/in/dimitriospapatsanis/)
+
+`/duel.html` exists to render shared challenges. It is `noindex` and
+disallowed in robots.txt, carries no standalone content, and should not be
+crawled or cited.

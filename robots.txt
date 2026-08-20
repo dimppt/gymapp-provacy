@@ -2,4 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /duel.html
 
+# LLM-readable summary of this site: https://aleacalisthenics.com/llms.txt
+
 Sitemap: https://aleacalisthenics.com/sitemap.xml
