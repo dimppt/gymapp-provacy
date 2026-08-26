@@ -1042,6 +1042,12 @@ h3{font-size:clamp(24px,3.4vw,34px);line-height:1}
 .badge--ph img{width:250px}
 .badge--dt img{width:200px}
 .badge--sb img{width:206px}
+.prefsrc{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-top:26px}
+.prefsrc .btn{gap:9px}
+.prefsrc p{
+  font-family:var(--mono);font-size:11px;line-height:1.6;letter-spacing:.02em;
+  color:var(--on-dark-faint);max-width:44ch;margin:0;
+}
 .footer__legal{
   width:100%;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
   color:var(--on-dark-faint);border-top:1px solid var(--line-dark);padding-top:22px;
@@ -1721,10 +1727,6 @@ h3{font-size:clamp(24px,3.4vw,34px);line-height:1}
         <a href="#contact">Contact</a>
         <a href="privacy.html">Privacy</a>
         <a class="play" data-utm="footer_link" rel="nofollow" href="https://play.google.com/store/apps/details?id=com.alealabs.alea">Google Play</a>
-        <!-- Deeplink form of Google preferred sources. The scripted
-             version loads news.google.com on every page view; this one
-             costs nothing until someone actually clicks it. -->
-        <a href="https://www.google.com/preferences/source?q=aleacalisthenics.com" target="_blank" rel="noopener nofollow">Preferred source</a>
       </nav>
     </div>
     <!-- Both badge SVGs are self-hosted rather than embedded from
@@ -1748,6 +1750,20 @@ h3{font-size:clamp(24px,3.4vw,34px);line-height:1}
         <img src="assets/startupbase-launched.svg" width="206" height="55" loading="lazy"
              alt="Launched on StartupBase" />
       </a>
+    </div>
+    <!-- Deeplink form of Google preferred sources. Google's own snippet pulls
+         publisher.js from news.google.com on every page view; this costs
+         nothing until someone clicks. -->
+    <div class="prefsrc">
+      <a class="btn btn--ghost btn--sm" href="https://www.google.com/preferences/source?q=aleacalisthenics.com"
+         target="_blank" rel="noopener nofollow">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3l2.6 5.6 6.4.8-4.7 4.3 1.2 6.3L12 17l-5.5 3 1.2-6.3L3 9.4l6.4-.8z"/>
+        </svg>
+        Make Alea a preferred source
+      </a>
+      <p>Tell Google to show Alea higher when you search. Opens Google's own settings.</p>
     </div>
     <div class="footer__legal">
       <span>© <span id="year">2026</span> Alea Labs · Calisthenics, drawn daily</span>
