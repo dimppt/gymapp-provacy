@@ -110,6 +110,7 @@ AI-search visibility.
 ## Links
 
 - [Homepage](https://aleacalisthenics.com/): full feature overview, screenshots and FAQ
+- [Free web workout generator](https://aleacalisthenics.com/roll.html): rolls the same dice in a browser, no install; lacks duels, reminders and full sessions
 - [Privacy policy](https://aleacalisthenics.com/privacy.html): what is stored and where
 - [Google Play listing](https://play.google.com/store/apps/details?id=com.alealabs.alea): download
 - [Founder on LinkedIn](https://www.linkedin.com/in/dimitriospapatsanis/)
