@@ -49,8 +49,15 @@
         "@id": "https://aleacalisthenics.com/roll.html#breadcrumb"
       },
       "mainEntity": {
-        "@id": "https://aleacalisthenics.com/roll.html#howto"
-      }
+        "@id": "https://aleacalisthenics.com/roll.html#tool"
+      },
+      "primaryImageOfPage": {
+        "@id": "https://aleacalisthenics.com/roll.html#img"
+      },
+      "significantLink": [
+        "https://aleacalisthenics.com/",
+        "https://aleacalisthenics.com/privacy.html"
+      ]
     },
     {
       "@type": "BreadcrumbList",
@@ -69,6 +76,47 @@
           "item": "https://aleacalisthenics.com/roll.html"
         }
       ]
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "https://aleacalisthenics.com/roll.html#tool",
+      "name": "Random Bodyweight Workout Generator",
+      "url": "https://aleacalisthenics.com/roll.html",
+      "description": "A free browser tool that rolls two dice to pick a calisthenics exercise and a rep count from the same pools the Alea Android app uses.",
+      "applicationCategory": "HealthApplication",
+      "applicationSubCategory": "Fitness",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript. Runs in any modern browser.",
+      "inLanguage": "en",
+      "isAccessibleForFree": true,
+      "permissions": "None",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "featureList": [
+        "Rolls a random calisthenics exercise from a pool of twenty",
+        "Rolls a rep count, or a hold duration for isometric exercises",
+        "Configurable exercise die from D4 to D20",
+        "Configurable rep die from D4 to D12",
+        "Running tally of rolls and reps for the day",
+        "Day streak stored locally in the browser"
+      ],
+      "storageRequirements": "Uses browser local storage only. No account and no server.",
+      "creator": {
+        "@id": "https://aleacalisthenics.com/#founder"
+      },
+      "publisher": {
+        "@id": "https://aleacalisthenics.com/#org"
+      },
+      "isPartOf": {
+        "@id": "https://aleacalisthenics.com/#website"
+      },
+      "about": {
+        "@id": "https://aleacalisthenics.com/roll.html#exercises"
+      }
     },
     {
       "@type": "HowTo",
@@ -193,6 +241,145 @@
           }
         }
       ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://aleacalisthenics.com/roll.html#exercises",
+      "name": "The 20 bodyweight exercises in the Alea pool",
+      "description": "The ordered pool the exercise die draws from. Die size slices from the top, so a D4 draws only the first four.",
+      "itemListOrder": "https://schema.org/ItemListOrderAscending",
+      "numberOfItems": 20,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Push-ups",
+          "description": "the baseline upper-body press"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Dips",
+          "description": "triceps and lower chest, needs parallel bars or a chair edge"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Pike push-ups",
+          "description": "shifts load onto the shoulders"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Diamond push-ups",
+          "description": "narrow hand position, triceps-dominant"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "Tricep dips",
+          "description": "bench or chair variation"
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "name": "Archer push-ups",
+          "description": "unilateral, a step toward the one-arm push-up"
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "name": "Pull-ups",
+          "description": "the core vertical pull, needs a bar"
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "name": "Inverted rows",
+          "description": "horizontal pull, far more accessible than pull-ups"
+        },
+        {
+          "@type": "ListItem",
+          "position": 9,
+          "name": "Muscle-ups",
+          "description": "pull-up into a dip, the hardest movement in the pool"
+        },
+        {
+          "@type": "ListItem",
+          "position": 10,
+          "name": "Squats",
+          "description": "the foundational lower-body pattern"
+        },
+        {
+          "@type": "ListItem",
+          "position": 11,
+          "name": "Lunges",
+          "description": "single-leg, balance and quads"
+        },
+        {
+          "@type": "ListItem",
+          "position": 12,
+          "name": "Bulgarian split squats",
+          "description": "rear foot elevated, brutal at low reps"
+        },
+        {
+          "@type": "ListItem",
+          "position": 13,
+          "name": "Pistol squats",
+          "description": "full single-leg squat, strength and mobility"
+        },
+        {
+          "@type": "ListItem",
+          "position": 14,
+          "name": "Mountain climbers",
+          "description": "core under a cardio load"
+        },
+        {
+          "@type": "ListItem",
+          "position": 15,
+          "name": "Plank hold",
+          "description": "timed, 20 seconds to 3 minutes"
+        },
+        {
+          "@type": "ListItem",
+          "position": 16,
+          "name": "L-sit hold",
+          "description": "timed, compression strength"
+        },
+        {
+          "@type": "ListItem",
+          "position": 17,
+          "name": "Burpees",
+          "description": "full body, the conditioning tax"
+        },
+        {
+          "@type": "ListItem",
+          "position": 18,
+          "name": "Jumping jacks",
+          "description": "low-impact cardio, good for warming up"
+        },
+        {
+          "@type": "ListItem",
+          "position": 19,
+          "name": "Box jumps",
+          "description": "explosive lower body"
+        },
+        {
+          "@type": "ListItem",
+          "position": 20,
+          "name": "Handstand hold",
+          "description": "timed, balance and shoulder stability"
+        }
+      ]
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://aleacalisthenics.com/roll.html#img",
+      "url": "https://aleacalisthenics.com/assets/og.png",
+      "contentUrl": "https://aleacalisthenics.com/assets/og.png",
+      "width": 1024,
+      "height": 500,
+      "caption": "Alea: the dice decide. Random calisthenics, build a streak, duel friends."
     }
   ]
 }
