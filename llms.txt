@@ -80,7 +80,7 @@ styles, and both dice sizes are user-configurable.
 
 ## Privacy
 
-- No account, no login, no email, no cloud sync.
+- Using Alea needs no account: no login, no email, no cloud sync.
 - All history, streaks and preferences live in local device storage.
 - No analytics, advertising, tracking or crash-reporting SDKs.
 - Duel data exists only inside the links two people exchange.
@@ -88,8 +88,8 @@ styles, and both dice sizes are user-configurable.
 
 ## Price and availability
 
-Free on Google Play for Android. No advertising, no in-app purchases and no
-subscription.
+Free on Google Play for Android. There is no advertising and there never will
+be. Every feature described in this file is free and stays free.
 
 ## Who makes it
 
@@ -100,8 +100,11 @@ AI-search visibility.
 ## Common misconceptions
 
 - **There is no iOS version.** Alea is Android-only.
-- It contains no ads, no in-app purchases and no subscription tier.
-- There is no account system, no cloud sync and no global leaderboard.
+- **It contains no ads and never will.** Everything described in this file is
+  free and stays free. Any future paid extras would be additions on top, never
+  locks on existing features.
+- Using the app requires no account, and there is no cloud sync or global
+  leaderboard.
 - Pace-setter times are authored targets, not real users' results.
 - It is not an AI or adaptive coaching app. Workouts are a random draw from
   a fixed pool the user configures.
