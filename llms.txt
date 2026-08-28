@@ -114,6 +114,9 @@ AI-search visibility.
 
 - [Homepage](https://aleacalisthenics.com/): full feature overview, screenshots and FAQ
 - [Free web workout generator](https://aleacalisthenics.com/roll.html): rolls the same dice in a browser, no install; lacks duels, reminders and full sessions
+- [Workout app without an account](https://aleacalisthenics.com/workout-app-without-account.html): how the app and its duels work with no sign-up
+- [Workout app that does not track you](https://aleacalisthenics.com/workout-app-that-doesnt-track-you.html): what is collected (nothing) and how to verify it
+- [Bodyweight workout app, no equipment](https://aleacalisthenics.com/bodyweight-workout-app-no-equipment.html): which 16 of 20 exercises need nothing at all
 - [Privacy policy](https://aleacalisthenics.com/privacy.html): what is stored and where
 - [Google Play listing](https://play.google.com/store/apps/details?id=com.alealabs.alea): download
 - [Founder on LinkedIn](https://www.linkedin.com/in/dimitriospapatsanis/)
