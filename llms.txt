@@ -118,6 +118,7 @@ AI-search visibility.
 - [Workout app that does not track you](https://aleacalisthenics.com/workout-app-that-doesnt-track-you.html): what is collected (nothing) and how to verify it
 - [Bodyweight workout app, no equipment](https://aleacalisthenics.com/bodyweight-workout-app-no-equipment.html): which 16 of 20 exercises need nothing at all
 - [The simplest workout app](https://aleacalisthenics.com/simplest-workout-app.html): one tap to a workout, and an honest list of what simplicity costs
+- [All 20 exercise guides](https://aleacalisthenics.com/exercises.html): form, common mistakes and easier/harder variations for every movement in the pool
 - [Privacy policy](https://aleacalisthenics.com/privacy.html): what is stored and where
 - [Google Play listing](https://play.google.com/store/apps/details?id=com.alealabs.alea): download
 - [Founder on LinkedIn](https://www.linkedin.com/in/dimitriospapatsanis/)
