@@ -874,6 +874,15 @@ h3{font-size:clamp(24px,3.4vw,34px);line-height:1}
 .step h3{margin-top:16px}
 .step p{margin-top:12px;color:var(--on-light-soft);font-size:16px}
 
+/* --------------------------------------------------------------- taps */
+.taps{margin-top:clamp(40px,5vw,58px);border-top:1px solid var(--line-light);padding-top:clamp(26px,3vw,34px)}
+.taps__row{display:flex;flex-wrap:wrap;align-items:center;gap:clamp(20px,3vw,40px);margin-top:18px}
+.taps__me{display:flex;align-items:baseline;gap:14px;flex:none}
+.taps__me .n{font-family:var(--display);font-size:clamp(64px,9vw,110px);line-height:.8;color:var(--orange)}
+.taps__me .k{font-family:var(--mono);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--on-light-faint)}
+.taps__them{flex:1;min-width:260px}
+.taps__them p{color:var(--on-light-soft);font-size:16px;max-width:46ch;margin:0}
+
 /* -------------------------------------------------------------- features */
 .feat{
   display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
@@ -1228,6 +1237,20 @@ h3{font-size:clamp(24px,3.4vw,34px);line-height:1}
         <h3>Repeat</h3>
         <p>Roll again, or bank it. Come back tomorrow and the streak grows. Don't break the chain.</p>
       </article>
+    </div>
+
+    <div class="taps rv">
+      <p class="label">Taps from opening the app to a workout</p>
+      <div class="taps__row">
+        <div class="taps__me"><span class="n">1</span><span class="k">Alea</span></div>
+        <div class="taps__them">
+          <p>
+            No account, no goal questionnaire, no programme to choose, no paywall
+            before your first rep. Alea opens on the Roll button.
+            <a href="simplest-workout-app.html">Why the whole app is one button</a>.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1716,6 +1739,7 @@ h3{font-size:clamp(24px,3.4vw,34px);line-height:1}
       </a>
       <nav class="footer__links" aria-label="Footer">
         <a href="roll.html">Try it free</a>
+        <a href="simplest-workout-app.html">One button</a>
         <a href="workout-app-without-account.html">No account</a>
         <a href="workout-app-that-doesnt-track-you.html">No tracking</a>
         <a href="bodyweight-workout-app-no-equipment.html">No equipment</a>
